@@ -17,11 +17,11 @@ const Navbar = () => {
             <div className="navbar_bottom">
                 <div className="navbar_bottom_logo"></div>
                 <div className="navbar_bottom_links">
-                    <a href="#home">Home</a>
-                    <a href='#about'>About</a>
+                    <a href="/#home">Home</a>
+                    <a href='/#about'>About</a>
                     <Link to={"/track"}>Track</Link>
-                    <a href="#services">Services</a>
-                    <a href="#contact">Contact</a>
+                    <a href="/#services">Services</a>
+                    <a href="/#contact">Contact</a>
                 </div>
             </div>
         </div>

@@ -26,6 +26,7 @@
 }
 
 .right button {
+    cursor: pointer;
     color: white;
     border-radius: 10px;
     background-color: #e72828;
@@ -34,10 +35,8 @@
     border: none;
 }
 
-@keyframes swell {
-    50% {
-        transform: scale(1.);
-    }
+.right button:hover {
+    transform: scaleY(1.1);
 }
 
 .left {

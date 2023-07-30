@@ -22,7 +22,7 @@ const Contact = () => {
                 </div>
                 <div className="footer_top_col">
                     <h1>Track your shipments, make deliveries fast and swift now.</h1>
-                    <Link to={"/track"} className="footer_top_col_button">Track</Link>
+                    <a href="#track" className="footer_top_col_button">Track</a>
                 </div>
             </div>
             <div className="footer_bottom">
