@@ -7,7 +7,7 @@ const Navbar = () => {
             <div className="navbar_top">
                 <div className="navbar_top_1">
                     <div className="address">Lorem, ipsum dolor.</div>
-                    <div className="dates">Mon - Fri : 09.00 AM - 09.00 PM</div>
+                    <div className="dates">Mon - Fri : 09.00 AM - 06.00 PM</div>
                 </div>
                 <div className="navbar_top_2">
                     <div className="number">+012 345 6789</div>
@@ -17,10 +17,11 @@ const Navbar = () => {
             <div className="navbar_bottom">
                 <div className="navbar_bottom_logo"></div>
                 <div className="navbar_bottom_links">
-                    <Link>Home</Link>
-                    <Link>About</Link>
-                    <Link>Track</Link>
-                    <Link>Services</Link>
+                    <a href="#home">Home</a>
+                    <a href='#about'>About</a>
+                    <Link to={"/track"}>Track</Link>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
         </div>
