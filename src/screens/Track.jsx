@@ -2,7 +2,7 @@ import '../styles/Track.scss'
 
 const Track = () => {
     return (
-        <div className="track">
+        <div className="trackingPage">
 
         </div>
     )

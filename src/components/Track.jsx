@@ -6,7 +6,17 @@ const Track = () => {
     const navigate = useNavigate()
     const [uniqueid, setUniqueId] = useState("")
     function goToTrack() {
-        alert(uniqueid)
+        if (uniqueid.toString().length < 12) {
+            alert("Unique ID for tracking cannot be blank")
+            return false
+        }
+        if (uniqueid.toString().length >= 16) {
+            alert("Please use a valid Tracking code")
+            return false
+        }
+        else {
+            navigate("/track/" + uniqueid)
+        }
     }
     return (
         <div className="track">
