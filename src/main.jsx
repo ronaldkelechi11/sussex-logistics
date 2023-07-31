@@ -10,7 +10,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     {
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/track' element={<Track />} />
+        <Route path='/track'>
+          <Route index element={<Track />} />
+          <Route path=':id' element={<Track />} />
+        </Route>
       </Routes>
     }
   </BrowserRouter>,
