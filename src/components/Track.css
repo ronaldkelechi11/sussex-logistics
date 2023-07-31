@@ -60,3 +60,29 @@
 .track .overlay .trackBar button:hover {
     transform: rotateZ(10deg);
 }
+
+@media screen and (max-width: 440px) {
+    .track {
+        height: fit-content;
+    }
+
+    .track .overlay {
+        width: auto;
+        height: 100%;
+        padding: 10px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .track .overlay .header {
+        font-size: 40px;
+    }
+
+    .track .overlay .body {
+        font-size: 14px;
+    }
+
+    .track .overlay .trackBar {
+        width: 80%;
+    }
+}

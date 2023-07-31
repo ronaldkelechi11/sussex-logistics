@@ -36,3 +36,17 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+@media screen and (max-width: 440px) {
+    .about {
+        height: auto;
+    }
+
+    .about .left {
+        display: none;
+    }
+
+    .about .right .body {
+        text-align: center;
+    }
+}

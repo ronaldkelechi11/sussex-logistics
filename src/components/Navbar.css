@@ -62,4 +62,12 @@
 }
 
 /* Mobile Screens */
-@media screen and(max-width: 440px) {}
+@media screen and (max-width: 440px) {
+    .navbar {
+        width: 100vw;
+    }
+
+    .navbar_top {
+        display: none;
+    }
+}

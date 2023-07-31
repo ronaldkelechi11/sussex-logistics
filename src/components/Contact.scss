@@ -90,3 +90,30 @@
         }
     }
 }
+
+@media screen and (max-width: 440px) {
+    .footer {
+        height: auto;
+    }
+
+    .footer_top {
+        flex-direction: column;
+    }
+
+    .footer_top_grid {
+        width: auto;
+    }
+
+    .footer_top_grid_card h3 {
+        text-align: center;
+    }
+
+    .footer_top_col {
+        width: 100%;
+    }
+
+    .footer_top_col h1 {
+        font-size: 20px;
+        margin: 10px;
+    }
+}

@@ -1,7 +1,6 @@
 .landing {
     height: 110vh;
     padding: 20px;
-    margin-top: 80px;
     background-image: url("../assets/images/wp3714801.jpeg");
     background-position: center;
     background-size: cover;
@@ -42,4 +41,15 @@
 .left {
     height: 100%;
     width: 50%;
+}
+
+@media screen and (max-width: 440px) {
+    .right .header {
+        font-size: 70px;
+    }
+
+    .right button {
+        width: 70%;
+        height: 40px;
+    }
 }
