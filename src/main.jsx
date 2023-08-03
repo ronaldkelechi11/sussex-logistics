@@ -3,7 +3,8 @@ import './main.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './screens/Home'
-import Track from './screens/Track'
+import PackageDetails from './components/PackageDetails'
+import TrackSearch from './components/TrackSearch'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -11,8 +12,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/track'>
-          <Route index element={<Track />} />
-          <Route path=':id' element={<Track />} />
+          <Route index element={<TrackSearch />} />
+          <Route path=':id' element={<PackageDetails />} />
         </Route>
       </Routes>
     }
