@@ -16,6 +16,7 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     gap: 10px;
 }
@@ -36,7 +37,7 @@
     padding: 10px;
     width: 90%;
     border: 1px solid white;
-    color: rgb(162, 159, 159);
+    color: #a29f9f;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -64,23 +65,59 @@
 }
 
 
-.shipmentDetails .header {
+.shipmentDetails .header,
+.shipmentTracking .header {
     font-size: 18px;
 }
 
-.shipmentDetails .body {
+.shipmentDetails .body,
+.shipmentTracking .body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.shipmentDetails .body p {
+.shipmentDetails .body p,
+.shipmentTracking .body p {
     font: bolder;
     color: white;
     border-bottom: 1px solid white;
+    text-transform: uppercase;
 }
 
-.shipmentDetails .body h1 {
+.shipmentDetails .body h1,
+.shipmentTracking .body h1 {
     margin-top: 10px;
     color: white;
     font-size: 16px;
+}
+
+.shipmentTracking .body h1 {
+    color: #a29f9f;
+}
+
+.shipmentTracking .body:nth-child(0) {
+    background-color: #e72828;
+}
+
+@media screen and (max-width: 440px) {
+
+    .packageDetails .child .shipmentProfile .date,
+    .destination,
+    .expectedDeliveryDate,
+    .origin,
+    .receiverName,
+    .receiverAddress {
+        font-size: 13px;
+        align-items: center;
+    }
+
+    .shipmentProfile .body {
+        gap: 10px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .shipmentDetails .body h1,
+    .shipmentTracking .body h1 {
+        font-size: 13px;
+    }
 }

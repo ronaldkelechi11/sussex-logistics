@@ -1,22 +1,20 @@
 import './PackageDetails.css'
 import { useEffect, useState } from "react";
 import BackButton from './BackButton'
-import { useLocation } from 'react-router-dom';
 
 function PackageDetails() {
     const id = localStorage.getItem("uniqueid")
-    const location = useLocation()
-    console.log(location);
+
 
     const [shipment, setShipment] = useState({
         "id": "0",
-        "owner": "placeholder",
-        "from": "placeholder",
-        "to": "placeholder",
-        "address": "placeholder",
-        "shipmentDate": "placeholder",
-        "expectedDeliveryDate": "placeholder",
-        "shippingContent": [
+        "owner": "",
+        "from": "",
+        "to": "",
+        "address": "",
+        "shipmentDate": "",
+        "expectedDeliveryDate": "",
+        "shipingContent": [
             {
                 "content": "",
                 "quantity": ""
@@ -25,9 +23,21 @@ function PackageDetails() {
                 "content": "",
                 "quantity": ""
             }
+        ],
+        "shipingTracking": [
+            {
+                "dt": "",
+                "activity": "",
+                "location": ""
+            },
+            {
+                "dt": "",
+                "activity": "",
+                "location": ""
+            },
         ]
     },)
-    const url = "/src/__tests__/dummy.json"
+    const url = import.meta.env.VITE_BACKEND_URL
 
     useEffect(() => {
         let http = new XMLHttpRequest();
@@ -76,19 +86,38 @@ function PackageDetails() {
                             <p>QTY</p>
                             <p>Content</p>
                             {
-                                shipment.shippingContent.map(shippingItem => {
+                                shipment.shipingContent.map(shipingItem => {
                                     return (
                                         <>
-                                            <h1>{shipment.shippingContent.indexOf(shippingItem) + 1}</h1>
-                                            <h1>{shippingItem.quantity}</h1>
-                                            <h1>{shippingItem.content}</h1>
+                                            <h1>{shipment.shipingContent.indexOf(shipingItem) + 1}</h1>
+                                            <h1>{shipingItem.quantity}</h1>
+                                            <h1>{shipingItem.content}</h1>
                                         </>
                                     )
                                 })
                             }
                         </div>
                     </div>
-                    <div className="shipmentTracking"></div>
+                    <div className="shipmentTracking">
+                        <div className="header">Shipment Travel History</div>
+                        <div className="body">
+                            <p>Date/Time</p>
+                            <p>Activity</p>
+                            <p>Location</p>
+                            {
+                                shipment.shipingTracking.map(trackingItem => {
+                                    return (
+                                        <>
+                                            <h1 key={1}>{trackingItem.dt}</h1>
+                                            <h1 key={2}>{trackingItem.activity}</h1>
+                                            <h1 key={3}>{trackingItem.location}</h1>
+                                        </>
+                                    )
+                                })
+
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

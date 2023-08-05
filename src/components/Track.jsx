@@ -16,6 +16,7 @@ const Track = () => {
         }
         else {
             navigate("/track/" + uniqueid)
+            localStorage.setItem("uniqueid", uniqueid);
         }
     }
     return (

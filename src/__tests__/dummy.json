@@ -7,7 +7,7 @@
         "address": "123 Street, Hillside, Houston, Texas.",
         "shipmentDate": "2023-07-15",
         "expectedDeliveryDate": "2023-08-03",
-        "shippingContent": [
+        "shipingContent": [
             {
                 "content": "Box 1: Phones",
                 "quantity": "1"
@@ -20,6 +20,18 @@
                 "content": "Bag: Jewelry",
                 "quantity": "1"
             }
+        ],
+        "shipingTracking": [
+            {
+                "dt": "2023-07-15 7:00pm",
+                "activity": "In Transit",
+                "location": "Madrid, Spain."
+            },
+            {
+                "dt": "2023-07-17 6:00am",
+                "activity": "Arrives at sort Facility",
+                "location": "Lisbon, Portugal."
+            }
         ]
     },
     {
@@ -30,7 +42,7 @@
         "address": "123 Street, Mountain View, Los Angeles,Carlifornia.",
         "shipmentDate": "2023-08-02",
         "expectedDeliveryDate": "2023-08-07",
-        "shippingContent": [
+        "shipingContent": [
             {
                 "content": "Matrasses",
                 "quantity": "20"
