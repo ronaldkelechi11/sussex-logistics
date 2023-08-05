@@ -1,5 +1,6 @@
 import './PackageDetails.css'
 import { useEffect, useState } from "react";
+import axios from "axios";
 import BackButton from './BackButton'
 
 function PackageDetails() {
@@ -40,16 +41,15 @@ function PackageDetails() {
     const url = import.meta.env.VITE_BACKEND_URL
 
     useEffect(() => {
-        let http = new XMLHttpRequest();
-        http.open('GET', url);
-        http.send();
-        http.onload = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var shipments = JSON.parse(this.responseText)
+        axios.get(url)
+            .then((result) => {
+                console.log(result);
+                var shipments = result.data
                 var shipmentImlookingFor = shipments.filter(shipmentTag => shipmentTag.id == id)
                 shipmentImlookingFor.map(shipmentTag => setShipment(shipmentTag))
-            }
-        }
+            }).catch((err) => {
+                console.log(err);
+            });
     }, [])
 
     return (
