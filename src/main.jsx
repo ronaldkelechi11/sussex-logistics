@@ -6,6 +6,7 @@ import Home from './screens/Home'
 import PackageDetails from './components/PackageDetails'
 import TrackSearch from './components/TrackSearch'
 import Admin from './screens/Admin'
+import AdminFormBody from './components/admin/adminFormBody'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>

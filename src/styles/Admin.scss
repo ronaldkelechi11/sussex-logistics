@@ -25,12 +25,44 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-evenly;
 
             .header {
                 font-size: 20px;
             }
-        }
 
-        .adminAddDetails {}
+            .form {
+                width: 90%;
+                display: flex;
+                gap: 20px;
+                justify-content: space-between;
+                flex-direction: column;
+
+                input {
+                    border-radius: 10px;
+                    padding: 10px;
+                    border: 2px solid #e72828;
+
+                    &[type="button"] {
+                        cursor: pointer;
+                        background-color: #e72828;
+                        color: white;
+                        text-transform: uppercase;
+                        font-size: 14px;
+
+                        &:hover {
+                            transform: scale(1.05);
+                            transition: 0.5s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .adminAddDetails {
+        width: 80%;
+        height: 80%;
+        background-color: white;
     }
 }

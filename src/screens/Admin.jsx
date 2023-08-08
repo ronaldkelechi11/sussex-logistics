@@ -1,49 +1,16 @@
-import { useState } from 'react'
-import BackButton from '../components/BackButton'
-import '../styles/Admin.scss'
+import AdminFormBody from '../components/admin/adminFormBody'
+import AdminEdit from '../components/admin/AdminEdit'
+import { useEffect, useRef, useState } from "react";
+import BackButton from '../components/BackButton';
 
 const Admin = () => {
-    const [adminEmail, setAdminEmail] = useState("")
-    const [adminPassword, setAdminPassword] = useState("")
-    const LOCAL_STORAGE_ADMINISLOGGEDIN = "localstorageadminisloggedin";
-
-    /* I want to add a feature that makes it that if the admin 
-    logs in a message is sent
-    to his Email so that the actual owner knows*/
-
-    var MyComponent = <></>
-    if (LOCAL_STORAGE_ADMINISLOGGEDIN != true) {
-        MyComponent = adminFormBody
-    }
-    else (
-        MyComponent = adminAddDetails
-    )
-
-    function adminFormBody() {
-        return (
-            <div className="formBody">
-                <div className="header">Admin Login</div>
-                <form action="" method="post">
-                    <input type="text" placeholder='Email' value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} />
-                </form>
-            </div>
-        )
-    }
-
-    function adminAddDetails() {
-        return (
-            <div className="adminAddDetails">
-
-            </div>
-        )
-    }
+    const LOCAL_STORAGE_ADMINISLOGGEDIN = localStorage.getItem("localstorageadminisloggedin");
 
     return (
         <div className="admin">
             <BackButton />
-            <div className="overlay">
-                <MyComponent />
-            </div>
+            {LOCAL_STORAGE_ADMINISLOGGEDIN && <AdminEdit />}
+            {!LOCAL_STORAGE_ADMINISLOGGEDIN && <AdminFormBody />}
         </div>
     )
 }
