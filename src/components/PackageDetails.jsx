@@ -6,7 +6,6 @@ import BackButton from './BackButton'
 function PackageDetails() {
     const id = localStorage.getItem("uniqueid")
 
-
     const [shipment, setShipment] = useState({
         "id": "0",
         "owner": "",
@@ -39,14 +38,12 @@ function PackageDetails() {
         ]
     },)
     const url = import.meta.env.VITE_BACKEND_URL
+    console.log(url + "track/" + id);
 
     useEffect(() => {
-        axios.get(url)
+        axios.get(url + "track/" + id)
             .then((result) => {
-                console.log(result);
-                var shipments = result.data
-                var shipmentImlookingFor = shipments.filter(shipmentTag => shipmentTag.id == id)
-                shipmentImlookingFor.map(shipmentTag => setShipment(shipmentTag))
+                setShipment(result.data)
             }).catch((err) => {
                 console.log(err);
             });

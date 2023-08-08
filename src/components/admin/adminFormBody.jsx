@@ -19,6 +19,7 @@ function AdminFormBody() {
                     alert("Wrong Admin Email or Password. Try Again")
                 }
                 if (result.status == 200) {
+                    alert("Please Refresh your browser")
                     localStorage.setItem(LOCAL_STORAGE_ADMINISLOGGEDIN, true)
                     navigate("/admin")
                 }

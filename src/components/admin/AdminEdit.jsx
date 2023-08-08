@@ -2,7 +2,9 @@ import '../../styles/Admin.scss'
 
 function AdminEdit() {
     return (
-        <div className="adminAddDetails"></div>
+        <div className="adminAddDetails">
+
+        </div>
     )
 }
 
