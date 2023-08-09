@@ -63,6 +63,23 @@
     .adminAddDetails {
         width: 80%;
         height: 80%;
+        border-radius: 10px;
         background-color: white;
+        display: flex;
+        flex-direction: column;
+
+
+        .header {
+            font-size: 24px;
+            align-self: center;
+            color: #e72828;
+        }
+
+        form {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 }

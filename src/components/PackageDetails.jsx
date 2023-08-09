@@ -2,9 +2,12 @@ import './PackageDetails.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import BackButton from './BackButton'
+import { useNavigate } from 'react-router-dom';
 
 function PackageDetails() {
     const id = localStorage.getItem("uniqueid")
+    const url = import.meta.env.VITE_BACKEND_URL
+    const navigate = useNavigate()
 
     const [shipment, setShipment] = useState({
         "id": "0",
@@ -37,15 +40,22 @@ function PackageDetails() {
             },
         ]
     },)
-    const url = import.meta.env.VITE_BACKEND_URL
-    console.log(url + "track/" + id);
+
 
     useEffect(() => {
         axios.get(url + "track/" + id)
             .then((result) => {
-                setShipment(result.data)
+                if (result.status === 400) {
+                    alert("Invalid tracking code")
+                    navigate("/")
+                }
+                else {
+                    setShipment(result.data)
+                }
             }).catch((err) => {
                 console.log(err);
+                alert("Invalid tracking code")
+                navigate("/")
             });
     }, [])
 
