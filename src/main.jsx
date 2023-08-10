@@ -6,7 +6,7 @@ import Home from './screens/Home'
 import PackageDetails from './components/PackageDetails'
 import TrackSearch from './components/TrackSearch'
 import Admin from './screens/Admin'
-import AdminFormBody from './components/admin/adminFormBody'
+import AdminEdit from './components/admin/AdminEdit'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -17,7 +17,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route index element={<TrackSearch />} />
           <Route path=':id' element={<PackageDetails />} />
         </Route>
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin'>
+          <Route index element={<Admin />} />
+          <Route path='edit' element={<AdminEdit />} />
+        </Route>
       </Routes>
     }
   </BrowserRouter>,
