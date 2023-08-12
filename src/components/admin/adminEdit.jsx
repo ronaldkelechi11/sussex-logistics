@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import '../../styles/Admin.scss'
+import BackButton from "../BackButton";
+import './adminEdit.scss'
 
 const AdminEdit = () => {
     return (
         <div className="adminEdit">
+            <BackButton />
 
         </div>
     )

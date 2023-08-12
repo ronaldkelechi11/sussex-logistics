@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import BackButton from '../components/BackButton';
 
 const Admin = () => {
-    const LOCAL_STORAGE_ADMINISLOGGEDIN = localStorage.getItem("localstorageadminisloggedin");
+    const SESSION_STORAGE_ADMINISLOGGEDIN = sessionStorage.getItem("sessionstorageadminisloggedin");
 
     return (
         <div className="admin">
             <BackButton />
-            {LOCAL_STORAGE_ADMINISLOGGEDIN && <AdminEdit />}
-            {!LOCAL_STORAGE_ADMINISLOGGEDIN && <AdminFormBody />}
+            {SESSION_STORAGE_ADMINISLOGGEDIN && <AdminEdit />}
+            {!SESSION_STORAGE_ADMINISLOGGEDIN && <AdminFormBody />}
         </div>
     )
 }
