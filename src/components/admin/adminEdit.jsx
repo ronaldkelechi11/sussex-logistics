@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import BackButton from "../BackButton";
-import './AdminEdit.scss'
+import '../admin/AdminEdit.scss'
 import axios from 'axios';
 
 const AdminEdit = () => {
