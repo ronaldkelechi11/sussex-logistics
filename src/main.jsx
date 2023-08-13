@@ -6,7 +6,7 @@ import Home from './screens/Home'
 import PackageDetails from './components/PackageDetails'
 import TrackSearch from './components/TrackSearch'
 import Admin from './screens/Admin'
-import AdminEdit from './components/admin/AdminEdit'
+import AdminEdit from './components/admin/adminEdit'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
