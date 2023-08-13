@@ -75,6 +75,7 @@ function AdminHome() {
                     alert("Error saving Package to main Database")
                 }
             }).catch((err) => {
+                alert("Error please make sure all fields are filled")
                 console.log(err);
             });
         console.log(myObject);

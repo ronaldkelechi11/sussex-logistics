@@ -148,3 +148,42 @@
         }
     }
 }
+
+@media screen and (max-width: 440px) {
+    .adminEdit {
+        height: auto;
+        width: 100vw;
+        padding: 10px !important;
+    }
+
+    .adminEdit .overlay {
+        width: 90%;
+        height: 90%;
+        overflow-y: scroll;
+    }
+
+    .adminEdit .overlay .header {
+        font-size: 22px;
+        text-transform: uppercase;
+    }
+
+    .adminEdit .overlay .searchBar input {
+        width: 60%;
+    }
+
+    .adminEdit .overlay .searchBar button {
+        width: 20%;
+    }
+
+    .adminEdit .overlay .grid p {
+        font-size: 14px;
+    }
+
+    .adminEdit .overlay .shipingContent .add .form,
+    .adminEdit .overlay .shipingTracking .add .form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+    }
+
+}

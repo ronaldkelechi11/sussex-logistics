@@ -269,9 +269,7 @@
 
 @media screen and (max-width: 440px) {
     .admin {
-        width: 100vw;
-        height: 100vh;
-        padding: 0;
+        padding: 20px;
     }
 
     .admin .overlay {
@@ -282,5 +280,30 @@
 
     .admin .overlay .formBody {
         width: 100%;
+    }
+
+    .admin .adminAddDetails .header {
+        font-size: 22px;
+    }
+
+    // I dont want the icon to be showing
+    .admin .adminAddDetails form input[type="date" i] {}
+
+    .admin .adminAddDetails .shipingContentEditor .grid p {
+        font-size: 16px;
+    }
+
+    .admin .adminAddDetails .shipingContentEditor .add .form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin .adminAddDetails .shipmentTrackingEditor .add .form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin .adminAddDetails .finish {
+        width: 70%;
     }
 }
