@@ -1,4 +1,4 @@
-import './BackButton.css'
+import '../components/BackButton.css'
 import backButton from "../assets/images/arrow-left.svg"
 import { useNavigate } from 'react-router-dom'
 

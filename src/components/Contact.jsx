@@ -1,4 +1,4 @@
-import './Contact.scss'
+import '../components/Contact.scss'
 import { Link } from "react-router-dom";
 
 const Contact = () => {
