@@ -16,7 +16,6 @@ function AdminHome() {
     const [receiverName, setReceiverName] = useState("")
     const [receiverAddress, setReceiverAddress] = useState("")
 
-    const [myObject, setMyObject] = useState({})
 
     // For shiping content
     const [shipingContentArray, setShipingContentArray] = useState([])

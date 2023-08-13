@@ -9,7 +9,7 @@
 
 .trackingPage .overlay {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
     gap: 20px;
     display: flex;
@@ -81,6 +81,10 @@
 }
 
 @media screen and (max-width: 440px) {
+    .trackingPage {
+        height: 100%;
+    }
+
     .trackingPage .overlay {
         padding: 20px;
         width: auto;

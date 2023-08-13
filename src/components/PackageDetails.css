@@ -11,9 +11,8 @@
 
 .packageDetails .child {
     width: 80%;
-    height: 80%;
     border: 1px solid white;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -100,6 +99,11 @@
 }
 
 @media screen and (max-width: 440px) {
+    .packageDetails {
+        height: -webkit-fill-available;
+        width: auto;
+        padding: 10px;
+    }
 
     .packageDetails .child .shipmentProfile .date,
     .destination,

@@ -1,7 +1,7 @@
 .adminEdit {
     width: 100vw;
-    height: 100vh;
     display: flex;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     background-image: url("../../assets//images/image1.jpeg");
@@ -10,9 +10,8 @@
     background-size: cover;
 
     .overlay {
+        width: 80%;
         overflow-y: auto;
-        width: 90vw;
-        height: 90vh;
         border-radius: 10px;
         background-color: white;
         display: flex;
