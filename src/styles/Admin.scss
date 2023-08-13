@@ -266,3 +266,21 @@
         }
     }
 }
+
+@media screen and (max-width: 440px) {
+    .admin {
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+    }
+
+    .admin .overlay {
+        height: 100%;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .admin .overlay .formBody {
+        width: 100%;
+    }
+}
