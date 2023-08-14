@@ -10,7 +10,7 @@ const Navbar = () => {
                     <div className="dates">Mon - Fri : 09.00 AM - 06.00 PM</div>
                 </div>
                 <div className="navbar_top_2">
-                    <div className="number">+012 345 6789</div>
+                    <div className="number">+64 210 847 2021</div>
                     <div className="email">contact@sussexlogistics.com</div>
                 </div>
             </div>
