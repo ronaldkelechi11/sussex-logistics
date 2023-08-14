@@ -6,7 +6,7 @@ const Navbar = () => {
         <div className="navbar">
             <div className="navbar_top">
                 <div className="navbar_top_1">
-                    <div className="address">Lorem, ipsum dolor.</div>
+                    <div className="address"></div>
                     <div className="dates">Mon - Fri : 09.00 AM - 06.00 PM</div>
                 </div>
                 <div className="navbar_top_2">
@@ -22,6 +22,7 @@ const Navbar = () => {
                     <Link to={"/track"}>Track</Link>
                     <a href="/#services">Services</a>
                     <a href="/#contact">Contact</a>
+                    <Link to="/admin">Login</Link>
                 </div>
             </div>
         </div>

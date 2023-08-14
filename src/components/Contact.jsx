@@ -1,11 +1,7 @@
 import '../components/Contact.scss'
-import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
-    const navigate = useNavigate()
-    function navi() {
-        navigate("/admin")
-    }
+
     return (
         <div className="footer" id='contact'>
             <div className="footer_top">
@@ -31,7 +27,7 @@ const Contact = () => {
                 </div>
             </div>
             <div className="footer_bottom">
-                <div className="orgName" onClick={navi}>© 2002 SUSSEX LOGISTICS</div>
+                <div className="orgName">© 2002 SUSSEX LOGISTICS</div>
             </div>
         </div>
     )
