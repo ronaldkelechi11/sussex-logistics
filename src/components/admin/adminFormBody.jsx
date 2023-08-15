@@ -24,6 +24,7 @@ function AdminFormBody() {
                     navigate("/admin")
                 }
             }).catch((err) => {
+                alert("Error")
                 console.log(err);
             });
     }
