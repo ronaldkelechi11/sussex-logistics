@@ -19,9 +19,8 @@ function AdminFormBody() {
                     alert("Wrong Admin Email or Password. Try Again")
                 }
                 if (result.status == 200) {
-                    alert("Please Refresh your browser")
                     sessionStorage.setItem(SESSION_STORAGE_ADMINISLOGGEDIN, true)
-                    navigate("/admin")
+                    navigate("/")
                 }
             }).catch((err) => {
                 alert("Error")

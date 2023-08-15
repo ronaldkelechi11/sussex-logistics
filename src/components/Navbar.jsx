@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import './Navbar.css'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
+    const SESSION_STORAGE_ADMINISLOGGEDIN = sessionStorage.getItem("sessionstorageadminisloggedin");
+
     return (
         <div className="navbar">
             <div className="navbar_top">
@@ -22,7 +25,7 @@ const Navbar = () => {
                     <Link to={"/track"}>Track</Link>
                     <a href="/#services">Services</a>
                     <a href="/#contact">Contact</a>
-                    <Link to="/admin">Login</Link>
+                    <Link to="/admin">{SESSION_STORAGE_ADMINISLOGGEDIN ? "Admin" : "Login"}</Link>
                 </div>
             </div>
         </div>
