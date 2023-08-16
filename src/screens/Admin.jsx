@@ -1,6 +1,5 @@
 import AdminFormBody from '../components/admin/adminFormBody'
 import AdminEdit from '../components/admin/AdminHome'
-import { useEffect, useRef, useState } from "react";
 import BackButton from '../components/BackButton';
 
 const Admin = () => {
