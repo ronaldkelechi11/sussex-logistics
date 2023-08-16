@@ -12,8 +12,9 @@ function AdminFormBody() {
     const SESSION_STORAGE_ADMINISLOGGEDIN = "sessionstorageadminisloggedin";
 
     function Login() {
-        axios.post(adminUrl)
+        axios.post(adminUrl, { email: adminEmail, password: adminPassword })
             .then((result) => {
+                console.log(result);
                 if (result.status != 400) {
                     sessionStorage.setItem(SESSION_STORAGE_ADMINISLOGGEDIN, true)
                     navigate("/")
