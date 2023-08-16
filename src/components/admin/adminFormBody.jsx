@@ -14,10 +14,7 @@ function AdminFormBody() {
     function Login() {
         axios.post(adminUrl)
             .then((result) => {
-                if (result.status == 400) {
-                    alert("Wrong admin Email or Password")
-                }
-                else {
+                if (result.status != 400) {
                     sessionStorage.setItem(SESSION_STORAGE_ADMINISLOGGEDIN, true)
                     navigate("/")
                 }
