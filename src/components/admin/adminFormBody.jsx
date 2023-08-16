@@ -12,35 +12,18 @@ function AdminFormBody() {
     const SESSION_STORAGE_ADMINISLOGGEDIN = "sessionstorageadminisloggedin";
 
     function Login() {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("email", adminEmail);
-        urlencoded.append("password", adminPassword);
-
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: urlencoded,
-            redirect: 'follow'
-        };
-
-        fetch(adminUrl, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
+        axios.post(adminUrl)
+            .then((result) => {
                 if (result.status == 400) {
-                    alert("Wrong Admin Email or Password. Try Again")
+                    alert("Wrong admin Email or Password")
                 }
-                if (result.status == 200) {
+                else {
                     sessionStorage.setItem(SESSION_STORAGE_ADMINISLOGGEDIN, true)
                     navigate("/")
                 }
-            })
-            .catch(error => {
-                alert("Error")
-                console.log(error);
+            }).catch((err) => {
+                console.log(err);
+                alert("Server Error please contact the support developer")
             });
     }
 
