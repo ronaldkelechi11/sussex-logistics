@@ -4,30 +4,36 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 function AdminHome() {
-    const url = import.meta.env.VITE_BACKEND_URL
+    const url = import.meta.env.VITE_BACKEND_URL + "admin/add"
     const navigate = useNavigate()
 
     const [trackingCode, setTrackingCode] = useState("Tracking Code")
-
-    const [shipingDate, setShipingDate] = useState("")
-    const [expectedShipingDate, setExpectedShipingDate] = useState("")
-    const [destination, setDestination] = useState("")
-    const [origin, setOrigin] = useState("")
     const [receiverName, setReceiverName] = useState("")
     const [receiverAddress, setReceiverAddress] = useState("")
+    const [receiverEmailAddress, setReceiverEmailAddress] = useState("")
+    const [originCountry, setOriginCountry] = useState("")
+    const [destinationCountry, setDestinationCountry] = useState("")
+    const [shipingDate, setShipingDate] = useState("")
+    const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("")
+    const [paymentmode, setPaymentMode] = useState("transfer")
+    const [typeOfShipment, setTypeOfShipment] = useState("")
 
 
-    // For shiping content
+
+    // For Shiping content
     const [shipingContentArray, setShipingContentArray] = useState([])
     const [quantity, setQuantity] = useState("")
     const [content, setContent] = useState("")
+    const [weight, setWeight] = useState("")
     async function addToArray() {
         await setShipingContentArray(prevArray => {
-            return [...prevArray, { quantity: quantity, content: content }]
+            return [...prevArray, { quantity: quantity, content: content, weight: `${weight}Kg` }]
         })
         setQuantity("")
         setContent("")
+        setWeight("")
     }
+
 
     // For Tracking Content
     const [shipingTrackingArray, setShipingTrackingArray] = useState([])
@@ -46,9 +52,12 @@ function AdminHome() {
         setLocation("")
     }
 
+
+
     function generatetrackingcode() {
         setTrackingCode(Date.now())
     }
+
     function finish() {
         if (trackingCode == "Tracking Code") {
             alert("Tracking code cannot be blank. Please generate a tracking code")
@@ -56,29 +65,31 @@ function AdminHome() {
         }
         var myObject = {
             "id": trackingCode,
-            "owner": receiverName,
-            "from": origin,
-            "to": destination,
-            "address": receiverAddress,
+            "receiverName": receiverName,
+            "receiverAddress": receiverAddress,
+            "receiverEmailAddress": receiverEmailAddress,
+            "originCountry": originCountry,
+            "destinationCountry": destinationCountry,
             "shipmentDate": shipingDate,
-            "expectedDeliveryDate": expectedShipingDate,
+            "typeOfShipment": typeOfShipment,
+            "expectedDeliveryDate": expectedDeliveryDate,
+            "paymentMode": paymentmode,
             "shipingContent": shipingContentArray,
             "shipingTracking": shipingTrackingArray
         }
-        axios.post(url + "admin/add", { myObject: myObject })
-            .then((result) => {
-                //Succesfull
-                if (result.status == 200) {
-                    alert("New package Added Succesfully with tracking code " + trackingCode)
-                }
-                else {
-                    alert("Error saving Package to main Database")
-                }
-            }).catch((err) => {
-                alert(err)
-                alert("Error please make sure all fields are filled")
-                console.log(err);
-            });
+        // axios.post(url, { myObject: myObject })
+        //     .then((result) => {
+        //         // Succesful
+        //         if (result.status == 200) {
+        //             alert("New package Added Succesfully with tracking code " + trackingCode)
+        //         }
+        //         else {
+        //             alert("Error saving Package to main Database")
+        //         }
+        //     }).catch((err) => {
+        //         alert("Error please make sure all fields are filled")
+        //         console.log(err);
+        //     });
         console.log(myObject);
     }
 
@@ -91,28 +102,32 @@ function AdminHome() {
             <div className="header">Add a Package</div>
             <div className="uid">{trackingCode} <button onClick={generatetrackingcode}>Generate a Tracking Code</button></div>
             <form>
+                <input type="text" placeholder='Receiver Name' value={receiverName} onChange={(e) => setReceiverName(e.target.value)} />
+                <input type="address" placeholder='Receiver Address' value={receiverAddress} onChange={(e) => setReceiverAddress(e.target.value)} />
+                <input type="email" placeholder='Receiver Email Address' value={receiverEmailAddress} onChange={(e) => setReceiverEmailAddress(e.target.value)} />
+                <input type="text" placeholder='Type of Shipment' value={typeOfShipment} onChange={(e) => setTypeOfShipment(e.target.value)} />
                 <h1>Shiping Date:</h1>
                 <h1>Expected Delivery Date:</h1>
                 <input type="date" value={shipingDate} onChange={(e) => setShipingDate(e.target.value)} placeholder='Shiping Date(yyyy/mm/dd)' />
-                <input type="date" value={expectedShipingDate} onChange={(e) => setExpectedShipingDate(e.target.value)} placeholder='Expected Delivery Date(yyyy/mm/dd)' />
-                <input type="text" value={destination} onChange={(e) => setDestination(e.target.value)} placeholder='Destination(State, Country)' />
-                <input type="text" value={origin} onChange={(e) => setOrigin(e.target.value)} placeholder='Origin(State, Country)' />
-                <input type="text" value={receiverName} onChange={(e) => setReceiverName(e.target.value)} placeholder='Receiver Name' />
-                <input type="text" value={receiverAddress} onChange={(e) => setReceiverAddress(e.target.value)} placeholder='Receiver Address' />
+                <input type="date" value={expectedDeliveryDate} onChange={(e) => setExpectedDeliveryDate(e.target.value)} placeholder='Expected Delivery Date(yyyy/mm/dd)' />
+                <input type="text" placeholder='Origin Country' value={originCountry} onChange={(e) => setOriginCountry(e.target.value)} />
+                <input type="text" placeholder='Destination Country' value={destinationCountry} onChange={(e) => setDestinationCountry(e.target.value)} />
             </form>
 
 
             <div className="shipingContentEditor">
                 <div className="grid">
-                    <p>NO</p>
-                    <p>QTY</p>
+                    <p>No.</p>
+                    <p>Quantity</p>
                     <p>Content</p>
+                    <p>Weight(Kg)</p>
                     {shipingContentArray.map(shipingItem => {
                         return (
                             <>
                                 <h1>{shipingContentArray.indexOf(shipingItem) + 1}</h1>
                                 <h1>{shipingItem.quantity}</h1>
                                 <h1>{shipingItem.content}</h1>
+                                <h1>{shipingItem.weight}</h1>
                             </>
                         )
                     })
@@ -122,6 +137,7 @@ function AdminHome() {
                     <div className="form">
                         <input type="text" placeholder='Content' value={content} onChange={(e) => setContent(e.target.value)} />
                         <input type="number" placeholder='Quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
+                        <input type="number" placeholder='Weight(KG)' value={weight} onChange={(e) => setWeight(e.target.value)} />
                         <input type="button" value="Add" onClick={addToArray} />
                     </div>
                 </div>

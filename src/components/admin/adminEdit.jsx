@@ -25,7 +25,6 @@ const AdminEdit = () => {
             axios.post(url + "admin/edit", { trackingCode: trackingCode })
                 .then((result) => {
                     if (result.status == 200) {
-                        console.log(result.data);
                         setShipingDate(result.data.shipmentDate)
                         setExpectedShipingDate(result.data.expectedDeliveryDate)
                         setDestination(result.data.to)

@@ -70,4 +70,12 @@
     .navbar_top {
         display: none;
     }
+
+    .navbar_bottom {
+        justify-content: center;
+    }
+
+    .navbar_bottom_logo {
+        display: none;
+    }
 }
