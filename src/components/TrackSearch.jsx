@@ -19,7 +19,7 @@ const TrackSearch = () => {
         }
         else {
             navigate("/track/id?" + uniqueid)
-            localStorage.setItem("uniqueid", uniqueid);
+            sessionStorage.setItem("uniqueid", uniqueid);
         }
     }
 

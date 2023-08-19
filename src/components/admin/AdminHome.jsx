@@ -70,26 +70,26 @@ function AdminHome() {
             "receiverEmailAddress": receiverEmailAddress,
             "originCountry": originCountry,
             "destinationCountry": destinationCountry,
-            "shipmentDate": shipingDate,
+            "shipingDate": shipingDate,
             "typeOfShipment": typeOfShipment,
             "expectedDeliveryDate": expectedDeliveryDate,
             "paymentMode": paymentmode,
             "shipingContent": shipingContentArray,
             "shipingTracking": shipingTrackingArray
         }
-        // axios.post(url, { myObject: myObject })
-        //     .then((result) => {
-        //         // Succesful
-        //         if (result.status == 200) {
-        //             alert("New package Added Succesfully with tracking code " + trackingCode)
-        //         }
-        //         else {
-        //             alert("Error saving Package to main Database")
-        //         }
-        //     }).catch((err) => {
-        //         alert("Error please make sure all fields are filled")
-        //         console.log(err);
-        //     });
+        axios.post(url, { myObject: myObject })
+            .then((result) => {
+                // Succesful
+                if (result.status == 200) {
+                    alert("New package Added Succesfully with tracking code " + trackingCode)
+                }
+                else {
+                    alert("Error saving Package to main Database")
+                }
+            }).catch((err) => {
+                alert("Error please make sure all fields are filled")
+                console.log(err);
+            });
         console.log(myObject);
     }
 

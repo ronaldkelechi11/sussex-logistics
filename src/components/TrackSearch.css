@@ -1,6 +1,5 @@
 .trackingPage {
     width: 100vw;
-    height: 100vh;
     background-image: url("../assets/images/wp3714801.jpeg");
     background-position: center;
     background-repeat: no-repeat;
@@ -81,10 +80,6 @@
 }
 
 @media screen and (max-width: 440px) {
-    .trackingPage {
-        height: 100%;
-    }
-
     .trackingPage .overlay {
         padding: 20px;
         width: auto;

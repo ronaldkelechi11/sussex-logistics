@@ -5,39 +5,34 @@ import BackButton from './BackButton'
 import { useNavigate } from 'react-router-dom';
 
 function PackageDetails() {
-    const id = localStorage.getItem("uniqueid")
+    const id = sessionStorage.getItem("uniqueid")
     const url = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate()
 
     const [shipment, setShipment] = useState({
-        "id": "0",
-        "owner": "",
-        "from": "",
-        "to": "",
-        "address": "",
-        "shipmentDate": "",
+        "id": "",
+        "receiverName": "",
+        "receiverAddress": "",
+        "receiverEmailAddress": "",
+        "originCountry": "",
+        "destinationCountry": "",
+        "shipingDate": "",
+        "typeOfShipment": "",
         "expectedDeliveryDate": "",
+        "paymentMode": "",
         "shipingContent": [
             {
                 "content": "",
-                "quantity": ""
-            },
-            {
-                "content": "",
-                "quantity": ""
+                "quantity": "",
+                "weight": ""
             }
         ],
         "shipingTracking": [
             {
-                "dt": "",
+                "d": "",
                 "activity": "",
                 "location": ""
-            },
-            {
-                "dt": "",
-                "activity": "",
-                "location": ""
-            },
+            }
         ]
     },)
 
@@ -68,30 +63,37 @@ function PackageDetails() {
                     <div className="shipmentProfile">
                         <div className="header">Delivery Details</div>
                         <div className="body">
-                            <div className="date">Shipping Date <span>{shipment.shipmentDate}</span></div>
+                            <div className="date">Shipping Date: <span>{shipment.shipingDate}</span></div>
                             <div className="expectedDeliveryDate">
-                                Expected Delivery Date <span>{shipment.expectedDeliveryDate}</span>
+                                Expected Delivery Date: <span>{shipment.expectedDeliveryDate}</span>
                             </div>
                             <div className="destination">
-                                Destination <span> {shipment.to}</span>
+                                Destination Country: <span> {shipment.destinationCountry}</span>
                             </div>
                             <div className="origin">
-                                Origin <span>{shipment.from}</span>
+                                Origin Country: <span>{shipment.originCountry}</span>
                             </div>
                             <div className="receiverName">
-                                Receiver Name <span>{shipment.owner}</span>
+                                Receiver Name: <span>{shipment.receiverName}</span>
                             </div>
                             <div className="receiverAddress">
-                                Receiver Address <span>{shipment.address}</span>
+                                Receiver Address: <span>{shipment.receiverAddress}</span>
+                            </div>
+                            <div className="receiverAddress">
+                                Receiver Email Address: <span>{shipment.receiverEmailAddress}</span>
+                            </div>
+                            <div className="receiverAddress">
+                                Type of Shipment: <span>{shipment.typeOfShipment}</span>
                             </div>
                         </div>
                     </div>
                     <div className="shipmentDetails">
                         <div className="header">Shipment Content/Description</div>
                         <div className="body">
-                            <p>NO</p>
-                            <p>QTY</p>
+                            <p>No.</p>
+                            <p>Quantity</p>
                             <p>Content</p>
+                            <p>Weight(Kg)</p>
                             {
                                 shipment.shipingContent.map(shipingItem => {
                                     return (
@@ -99,6 +101,7 @@ function PackageDetails() {
                                             <h1>{shipment.shipingContent.indexOf(shipingItem) + 1}</h1>
                                             <h1>{shipingItem.quantity}</h1>
                                             <h1>{shipingItem.content}</h1>
+                                            <h1>{shipingItem.weight}</h1>
                                         </>
                                     )
                                 })
@@ -113,16 +116,36 @@ function PackageDetails() {
                             <p>Location</p>
                             {
                                 shipment.shipingTracking.map(trackingItem => {
+                                    console.log(trackingItem);
                                     return (
                                         <>
-                                            <h1 key={1}>{trackingItem.dt}</h1>
+                                            <h1 key={1}>{trackingItem.datetime}</h1>
                                             <h1 key={2}>{trackingItem.activity}</h1>
-                                            <h1 key={3}>{trackingItem.location}</h1>
+                                            <h1 className='underlined' key={3}>{trackingItem.location}</h1>
                                         </>
                                     )
                                 })
 
                             }
+                        </div>
+                    </div>
+                    <div className="shipperDetails">
+                        <div className="header">Shiper details</div>
+                        <div className="body">
+                            <p>Courier</p>
+                            <p>Type of Vessel</p>
+                            <p>Type of Delivery</p>
+                            <p>Status</p>
+                            <p>Agent Name</p>
+                            <p>Comments</p>
+
+
+                            <h1>Sussex Freight Carrier: E132DF</h1>
+                            <h1>Freight Carrier</h1>
+                            <h1>Door-Delivery</h1>
+                            <h1>Processing...</h1>
+                            <h1>Micheal Johannes</h1>
+                            <h1></h1>
                         </div>
                     </div>
                 </div>
