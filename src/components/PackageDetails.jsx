@@ -1,13 +1,15 @@
 import './PackageDetails.css'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import BackButton from './BackButton'
-import { useNavigate } from 'react-router-dom';
+import { useAsyncError, useNavigate } from 'react-router-dom';
 
 function PackageDetails() {
     const id = sessionStorage.getItem("uniqueid")
     const url = import.meta.env.VITE_BACKEND_URL
+
     const navigate = useNavigate()
+
 
     const [shipment, setShipment] = useState({
         "id": "",
@@ -36,6 +38,10 @@ function PackageDetails() {
         ]
     },)
 
+    const [mapIsShowing, setMapIsShowing] = useState(false)
+    const [clickedCountry, setClickedCountry] = useState("")
+    var mapUrl = `https://www.google.com/maps/place/${clickedCountry}/`
+
 
     useEffect(() => {
         axios.get(url + "track/" + id)
@@ -49,10 +55,17 @@ function PackageDetails() {
                 }
             }).catch((err) => {
                 console.log(err);
-                alert("Invalid tracking code")
+                alert("Server Error")
                 navigate("/")
             });
     }, [])
+
+    const trackinglocation = useRef()
+    function openMap() {
+        setClickedCountry(trackinglocation.current.innerHTML)
+        setMapIsShowing(true)
+        console.log(trackinglocation);
+    }
 
     return (
         <div className="trackingPage">
@@ -116,12 +129,11 @@ function PackageDetails() {
                             <p>Location</p>
                             {
                                 shipment.shipingTracking.map(trackingItem => {
-                                    console.log(trackingItem);
                                     return (
                                         <>
                                             <h1 key={1}>{trackingItem.datetime}</h1>
                                             <h1 key={2}>{trackingItem.activity}</h1>
-                                            <h1 className='underlined' key={3}>{trackingItem.location}</h1>
+                                            <h1 className='underlined' onClick={openMap} ref={trackinglocation} key={3}>{trackingItem.location}</h1>
                                         </>
                                     )
                                 })
@@ -147,6 +159,12 @@ function PackageDetails() {
                             <h1>Micheal Johannes</h1>
                             <h1></h1>
                         </div>
+                    </div>
+                </div>
+                <div className={mapIsShowing ? 'secondchild' : 'invisible'}>
+                    <div className="cancelButton" onClick={() => { setMapIsShowing(false) }}></div>
+                    <div className="center">
+                        <iframe src={mapUrl} frameBorder="0"></iframe>
                     </div>
                 </div>
             </div>

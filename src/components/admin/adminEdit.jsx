@@ -2,18 +2,23 @@ import { useState } from 'react'
 import BackButton from "../BackButton";
 import '../admin/AdminEdit.scss'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AdminEdit = () => {
     const url = import.meta.env.VITE_BACKEND_URL
+    const navigate = useNavigate()
 
-    const [trackingCode, setTrackingCode] = useState()
 
-    const [shipingDate, setShipingDate] = useState("")
-    const [expectedShipingDate, setExpectedShipingDate] = useState("")
-    const [destination, setDestination] = useState("")
-    const [origin, setOrigin] = useState("")
+    const [trackingCode, setTrackingCode] = useState("")
     const [receiverName, setReceiverName] = useState("")
     const [receiverAddress, setReceiverAddress] = useState("")
+    const [receiverEmailAddress, setReceiverEmailAddress] = useState("")
+    const [originCountry, setOriginCountry] = useState("")
+    const [destinationCountry, setDestinationCountry] = useState("")
+    const [shipingDate, setShipingDate] = useState("")
+    const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("")
+    const [paymentmode, setPaymentMode] = useState("transfer")
+    const [typeOfShipment, setTypeOfShipment] = useState("")
     const [shipingContent, setShipingContent] = useState([])
     const [shipingTracking, setShipingTracking] = useState([])
 
@@ -25,12 +30,15 @@ const AdminEdit = () => {
             axios.post(url + "admin/edit", { trackingCode: trackingCode })
                 .then((result) => {
                     if (result.status == 200) {
-                        setShipingDate(result.data.shipmentDate)
-                        setExpectedShipingDate(result.data.expectedDeliveryDate)
-                        setDestination(result.data.to)
-                        setOrigin(result.data.from)
-                        setReceiverName(result.data.owner)
-                        setReceiverAddress(result.data.address)
+                        setReceiverName(result.data.receiverName)
+                        setReceiverAddress(result.data.receiverAddress)
+                        setReceiverEmailAddress(result.data.receiverEmailAddress)
+                        setOriginCountry(result.data.originCountry)
+                        setDestinationCountry(result.data.destinationCountry)
+                        setShipingDate(result.data.shipingDate)
+                        setTypeOfShipment(result.data.typeOfShipment)
+                        setExpectedDeliveryDate(result.data.expectedDeliveryDate)
+                        setPaymentMode(result.data.paymentMode)
                         setShipingContent(result.data.shipingContent)
                         setShipingTracking(result.data.shipingTracking)
                         console.log(shipingTracking);
@@ -52,7 +60,7 @@ const AdminEdit = () => {
     async function addToTrackingArray() {
         var dt = date + " " + time
         await setShipingTracking(prevArray => {
-            return [...prevArray, { dt: dt, activity: activity, location: location }]
+            return [...prevArray, { datetime: dt, activity: activity, location: location }]
         })
         setDate("")
         setTime("")
@@ -63,12 +71,15 @@ const AdminEdit = () => {
     function updateTheList() {
         var myObject = {
             "id": trackingCode,
-            "owner": receiverName,
-            "from": origin,
-            "to": destination,
-            "address": receiverAddress,
-            "shipmentDate": shipingDate,
-            "expectedDeliveryDate": expectedShipingDate,
+            "receiverName": receiverName,
+            "receiverAddress": receiverAddress,
+            "receiverEmailAddress": receiverEmailAddress,
+            "originCountry": originCountry,
+            "destinationCountry": destinationCountry,
+            "shipingDate": shipingDate,
+            "typeOfShipment": typeOfShipment,
+            "expectedDeliveryDate": expectedDeliveryDate,
+            "paymentMode": paymentmode,
             "shipingContent": shipingContent,
             "shipingTracking": shipingTracking
         }
@@ -76,6 +87,7 @@ const AdminEdit = () => {
             .then((result) => {
                 if (result.status == 200) {
                     alert('Package Succesfully updated')
+                    navigate("/")
                 }
                 else {
                     alert("Error Updating Package contact Developer on +2347044000087")
@@ -99,11 +111,13 @@ const AdminEdit = () => {
 
                     <div className="grid">
                         <p>Shiping Date: <span>{shipingDate}</span></p>
-                        <p>Expected Delivery Date: <span>{expectedShipingDate}</span></p>
-                        <p>Destination: <span> {destination}</span></p>
-                        <p>Origin: <span>{origin}</span></p>
+                        <p>Expected Delivery Date: <span>{expectedDeliveryDate}</span></p>
+                        <p>Destination: <span> {destinationCountry}</span></p>
+                        <p>Origin: <span>{originCountry}</span></p>
                         <p>Receiver Name: <span> {receiverName}</span></p>
                         <p>Receiver Address: <span> {receiverAddress}</span></p>
+                        <p>Receiver Email Address: <span>{receiverEmailAddress}</span></p>
+                        <p>Type of Shipment: <span>{typeOfShipment}</span></p>
                     </div>
 
 
@@ -113,12 +127,14 @@ const AdminEdit = () => {
                             <p>NO</p>
                             <p>QTY</p>
                             <p>Content</p>
+                            <p>Weight(Kg)</p>
                             {shipingContent.map(shipingItem => {
                                 return (
                                     <>
                                         <h1>{shipingContent.indexOf(shipingItem) + 1}</h1>
                                         <h1>{shipingItem.quantity}</h1>
                                         <h1>{shipingItem.content}</h1>
+                                        <h1>{shipingItem.weight}</h1>
                                     </>
                                 )
                             })
@@ -138,7 +154,7 @@ const AdminEdit = () => {
                             {shipingTracking.map(shipingItem => {
                                 return (
                                     <>
-                                        <h1>{shipingItem.dt}</h1>
+                                        <h1>{shipingItem.datetime}</h1>
                                         <h1>{shipingItem.activity}</h1>
                                         <h1>{shipingItem.location}</h1>
                                     </>
