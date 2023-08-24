@@ -64,7 +64,6 @@ function PackageDetails() {
     function openMap() {
         setClickedCountry(trackinglocation.current.innerHTML)
         setMapIsShowing(true)
-        console.log(trackinglocation);
     }
 
     return (
