@@ -44,7 +44,7 @@ function AdminHome() {
     async function addToTrackingArray() {
         var dt = date + " " + time
         await setShipingTrackingArray(prevArray => {
-            return [...prevArray, { dt: dt, activity: activity, location: location }]
+            return [...prevArray, { datetime: dt, activity: activity, location: location }]
         })
         setDate("")
         setTime("")
