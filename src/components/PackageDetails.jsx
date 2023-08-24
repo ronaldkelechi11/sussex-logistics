@@ -64,6 +64,12 @@ function PackageDetails() {
     function openMap() {
         setClickedCountry(trackinglocation.current.innerHTML)
         setMapIsShowing(true)
+        console.log(clickedCountry);
+        window.open(
+            mapUrl,
+            "Name the window here",
+            "width=500,height=500,screenX=500,screenY=500",
+        )
     }
 
     return (
@@ -160,12 +166,12 @@ function PackageDetails() {
                         </div>
                     </div>
                 </div>
-                <div className={mapIsShowing ? 'secondchild' : 'invisible'}>
+                {/* <div className={mapIsShowing ? 'secondchild' : 'invisible'}>
                     <div className="cancelButton" onClick={() => { setMapIsShowing(false) }}></div>
                     <div className="center">
                         <iframe src={mapUrl} frameBorder="0"></iframe>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
