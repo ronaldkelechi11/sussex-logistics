@@ -17,7 +17,7 @@ const Contact = () => {
                     </div>
                     <div className="footer_top_grid_card">
                         <h4>Phone Number</h4>
-                        <h5>+64 210 847 2021</h5>
+                        <h5>+44 7466 116125</h5>
                     </div>
                 </div>
                 <div className="footer_top_col">
