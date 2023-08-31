@@ -102,13 +102,32 @@
 
     .footer_top_grid {
         width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer_top_grid_card .logoImage {
+        align-self: center;
     }
 
     .footer_top_grid_card h3 {
+        align-self: center;
+    }
+
+    .footer_top_grid_card {
+        align-self: center;
+    }
+
+    .footer_top_col h1 {
         text-align: center;
     }
 
     .footer_top_col {
+        width: auto;
+    }
+
+    .footer_top_col_button {
         width: 100%;
     }
 

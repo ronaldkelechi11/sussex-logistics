@@ -83,7 +83,6 @@
     .trackingPage .overlay {
         padding: 20px;
         width: auto;
-        height: -webkit-fill-available;
     }
 
     .trackingPage .overlay .trackBar {
