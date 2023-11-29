@@ -307,4 +307,17 @@
     .admin .adminAddDetails .finish {
         width: 70%;
     }
+
+    // modified media queries
+    .admin .adminAddDetails form {
+        height: auto;
+    }
+
+    .admin .adminAddDetails form input {
+        height: 40px;
+    }
+
+    .admin .adminAddDetails .shipmentTrackingEditor .add .form input[type=button] {
+        place-self: center;
+    }
 }
