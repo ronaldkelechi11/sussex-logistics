@@ -13,7 +13,7 @@ const Contact = () => {
                     <div className="footer_top_grid_card"></div>
                     <div className="footer_top_grid_card">
                         <h4>Email</h4>
-                        <h5>contact@sussexlogistics.com</h5>
+                        <h5>billing4sussexlogistics@gmail.com</h5>
                     </div>
                     <div className="footer_top_grid_card">
                         <h4>Phone Number</h4>

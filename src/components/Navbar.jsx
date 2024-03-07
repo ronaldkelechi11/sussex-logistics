@@ -14,7 +14,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar_top_2">
                     <div className="number">+44 7466 116125</div>
-                    <div className="email">contact@sussexlogistics.com</div>
+                    <div className="email">billing4sussexlogistics@gmail.com</div>
                 </div>
             </div>
             <div className="navbar_bottom">
