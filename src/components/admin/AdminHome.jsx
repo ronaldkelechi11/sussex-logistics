@@ -15,7 +15,7 @@ function AdminHome() {
     const [destinationCountry, setDestinationCountry] = useState("")
     const [shipingDate, setShipingDate] = useState("")
     const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("")
-    const [paymentmode, setPaymentMode] = useState("transfer")
+    const [paymentmode, setPaymentMode] = useState("Transfer")
     const [typeOfShipment, setTypeOfShipment] = useState("")
 
 
@@ -41,11 +41,11 @@ function AdminHome() {
     const [time, setTime] = useState("")
     const [activity, setActivity] = useState("")
     const [location, setLocation] = useState("")
+
+    // Add to tracking array list
     async function addToTrackingArray() {
-        var dt = date + " " + time
-        await setShipingTrackingArray(prevArray => {
-            return [...prevArray, { datetime: dt, activity: activity, location: location }]
-        })
+        let dt = date + " " + time;
+        shipingTrackingArray.push({ datetime: dt, activity: activity, location: location })
         setDate("")
         setTime("")
         setActivity("")
@@ -63,6 +63,8 @@ function AdminHome() {
             alert("Tracking code cannot be blank. Please generate a tracking code")
             return false;
         }
+
+
         var myObject = {
             "id": trackingCode,
             "receiverName": receiverName,
@@ -80,6 +82,7 @@ function AdminHome() {
         axios.post(url, { myObject: myObject })
             .then((result) => {
                 // Succesful
+                console.log(myObject);
                 if (result.status == 200) {
                     alert("New package Added Succesfully with tracking code " + trackingCode)
                 }
@@ -90,6 +93,8 @@ function AdminHome() {
                 alert("Error please make sure all fields are filled")
                 console.log(err);
             });
+
+        // sent object
         console.log(myObject);
     }
 
@@ -152,7 +157,7 @@ function AdminHome() {
                     {shipingTrackingArray.map(shipingItem => {
                         return (
                             <>
-                                <h1>{shipingItem.dt}</h1>
+                                <h1>{shipingItem.datetime}</h1>
                                 <h1>{shipingItem.activity}</h1>
                                 <h1>{shipingItem.location}</h1>
                             </>

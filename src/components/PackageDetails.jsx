@@ -48,7 +48,7 @@ function PackageDetails() {
             .then((result) => {
                 if (result.status === 400) {
                     alert("Invalid tracking code")
-                    navigate("/")
+                    //TODO: navigate("/")
                 }
                 else {
                     setShipment(result.data)
@@ -56,7 +56,7 @@ function PackageDetails() {
             }).catch((err) => {
                 console.log(err);
                 alert("Server Error")
-                navigate("/")
+                //TODO: navigate("/")
             });
     }, [])
 
@@ -150,18 +150,23 @@ function PackageDetails() {
                         <div className="header">Shiper details</div>
                         <div className="body">
                             <p>Courier</p>
+                            <h1>Sussex Freight Carrier: E132DF</h1>
+
                             <p>Type of Vessel</p>
+                            <h1>Freight Carrier</h1>
+
                             <p>Type of Delivery</p>
+                            <h1>Door-Delivery</h1>
+
                             <p>Status</p>
+                            <h1>On Transit...</h1>
+
                             <p>Agent Name</p>
+                            <h1>Micheal Johannes</h1>
+
                             <p>Comments</p>
 
 
-                            <h1>Sussex Freight Carrier: E132DF</h1>
-                            <h1>Freight Carrier</h1>
-                            <h1>Door-Delivery</h1>
-                            <h1>Processing...</h1>
-                            <h1>Micheal Johannes</h1>
                             <h1></h1>
                         </div>
                     </div>

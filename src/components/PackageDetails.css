@@ -109,22 +109,19 @@
 
 .shipperDetails .body {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
-.shipperDetails .body:nth-child(0) {
-    background-color: #e72828;
-}
-
-.shipperDetails .body p {
+.shipperDetails .body p,
+h1 {
     font: bolder;
     color: white;
     text-align: center;
-    border-bottom: 1px solid white;
+    border: 1px solid white;
+    padding: 20px 10px;
 }
 
 .shipperDetails .body h1 {
-    /* margin-top: 20px; */
     color: #a29f9f;
     font-size: 16px;
     text-align: center;
@@ -212,6 +209,7 @@
     }
 
     .shipperDetails .body {
-        width: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
