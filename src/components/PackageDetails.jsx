@@ -108,7 +108,6 @@ function PackageDetails() {
                     <div className="shipmentDetails">
                         <div className="header">Shipment Content/Description</div>
                         <div className="body">
-                            <p>No.</p>
                             <p>Quantity</p>
                             <p>Content</p>
                             <p>Weight(Kg)</p>
@@ -116,7 +115,6 @@ function PackageDetails() {
                                 shipment.shipingContent.map(shipingItem => {
                                     return (
                                         <>
-                                            <h1>{shipment.shipingContent.indexOf(shipingItem) + 1}</h1>
                                             <h1>{shipingItem.quantity}</h1>
                                             <h1>{shipingItem.content}</h1>
                                             <h1>{shipingItem.weight}</h1>

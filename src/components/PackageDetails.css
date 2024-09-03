@@ -11,7 +11,7 @@
 .packageDetails .child {
     width: 80%;
     border: 1px solid white;
-    padding: 50px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -71,7 +71,7 @@
 
 .shipmentDetails .body {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .shipmentTracking .body {
