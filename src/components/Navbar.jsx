@@ -1,33 +1,41 @@
-import { useState } from 'react';
-import './Navbar.css'
 import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     const SESSION_STORAGE_ADMINISLOGGEDIN = sessionStorage.getItem("sessionstorageadminisloggedin");
 
     return (
-        <div className="navbar">
-            <div className="navbar_top">
-                <div className="navbar_top_1">
-                    <div className="address"></div>
-                    <div className="dates">Mon - Fri : 09.00 AM - 06.00 PM</div>
-                </div>
-                <div className="navbar_top_2">
-                    {/* <div className="number">+44 7466 116125</div> */}
-                    <div className="email">billing4sussexlogistics@gmail.com</div>
-                </div>
-            </div>
-            <div className="navbar_bottom">
-                <div className="navbar_bottom_logo"></div>
-                <div className="navbar_bottom_links">
-                    <a href="/#home">Home</a>
-                    <a href='/#about'>About</a>
-                    <Link to={"/track"}>Track</Link>
-                    <a href="/#services">Services</a>
-                    <a href="/#contact">Contact</a>
-                    <Link to="/admin">{SESSION_STORAGE_ADMINISLOGGEDIN ? "Admin" : "Login"}</Link>
+        <div className="flex w-full flex-col fixed top-0 z-[100]">
+
+            {/* top PART */}
+            <div className="p-4 flex bg-white flex-row justify-between items-center">
+                <Link reloadDocument className="h-[50px] w-[50px] bg-logoImg bg-center bg-no-repeat bg-cover hidden md:flex"></Link>
+
+                <div className="flex flex-row gap-2 md:gap-4 justify-center">
+                    <a className='navlink' href="/#home">Home</a>
+                    <a className='navlink' href='/#about'>About</a>
+                    <Link className='navlink hidden md:flex' to={"/track"}>Track</Link>
+                    <a className='navlink' href="/#services">Services</a>
+                    <a className='navlink' href="/#contact">Contact</a>
+                    <Link className='navlink' to="/admin">{SESSION_STORAGE_ADMINISLOGGEDIN ? "Admin" : "Login"}</Link>
                 </div>
             </div>
+
+            {/* Bottom PART */}
+            <div className="h-[30%] bg-[#f5f5f5] md:flex justify-between flex-row items-center p-3 text-xl text-[#555555] hidden">
+
+                <div className="flex flex-row gap-4">
+                    <div className="font-poppins text-sm">
+                        Mon - Fri : 09.00 AM - 06.00 PM
+                    </div>
+                </div>
+
+                <div className="flex flex-row gap-4">
+                    <div className="font-poppins text-sm">
+                        billing4sussexlogistics@gmail.com
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
