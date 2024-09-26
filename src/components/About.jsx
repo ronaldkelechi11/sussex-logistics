@@ -1,11 +1,10 @@
-import '../components/About.css'
 
 const About = () => {
     return (
-        <div className="about" id='about'>
-            <div className="right">
-                <p>About <span>Us</span></p>
-                <div className="body">
+        <div className="flex p-2 justify-evenly flex-row items-center font-poppins h-[90vh]" id='about'>
+            <div className="md:w-[50%] w-full md:h-full h-auto p-2 flex flex-col justify-evenly">
+                <p className="md:text-6xl text-4xl capitalize">About <span className="text-primary">Us</span></p>
+                <div className="font-poppins">
                     SUSSEX LOGISTICS is a freight forwarder offering global logistics solutions World wide. Encouraging an entrepreneurial spirit together with our professionalism, service orientation and the combination of years of experience in the industry enables us to deliver quality for competitive prices.
                     <br />
                     <br />
@@ -16,7 +15,9 @@ const About = () => {
                     Wе are mіndful оf building a hеаlthу rеlаtіоnѕhір with оur сuѕtоmеrѕ, ѕuррlіеrѕ sub-contractors аnd соnѕultаntѕ, оur gоаl іѕ co-operation, tеаmwоrk tо achieving a grand ѕuссеѕѕful рrоjесt at аll tіmе
                 </div>
             </div>
-            <div className="left"></div>
+
+
+            <div className="w-[50%] h-full p-2 md:flex flex-col hidden bg-logoImg bg-no-repeat bg-center bg-cover"></div>
         </div>
     )
 }

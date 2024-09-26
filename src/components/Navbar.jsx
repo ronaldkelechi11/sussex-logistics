@@ -6,8 +6,14 @@ const Navbar = () => {
     return (
         <div className="flex w-full flex-col">
 
+            {/* LOGO for mobile view */}
+            <div className="md:hidden flex justify-center items-center w-full bg-white">
+                <Link reloadDocument className="h-[60px] w-[60px] bg-logoImg bg-center bg-no-repeat bg-cover"></Link>
+            </div>
+
+
             {/* top PART */}
-            <div className="p-4 flex bg-white flex-row justify-between items-center">
+            <div className="p-2 md:p-4 flex bg-white flex-row justify-between items-center">
                 <Link reloadDocument className="h-[50px] w-[50px] bg-logoImg bg-center bg-no-repeat bg-cover hidden md:flex"></Link>
 
                 <div className="flex flex-row gap-2 md:gap-4 justify-center">
@@ -32,6 +38,10 @@ const Navbar = () => {
                 <div className="flex flex-row gap-4">
                     <div className="font-poppins text-sm">
                         billing4sussexlogistics@gmail.com
+                    </div>
+
+                    <div className="font-poppins text-sm">
+                        sussexlogisticsservice@gmail.com
                     </div>
                 </div>
             </div>
