@@ -4,7 +4,7 @@ const Navbar = () => {
     const SESSION_STORAGE_ADMINISLOGGEDIN = sessionStorage.getItem("sessionstorageadminisloggedin");
 
     return (
-        <div className="flex w-full flex-col fixed top-0 z-[100]">
+        <div className="flex w-full flex-col">
 
             {/* top PART */}
             <div className="p-4 flex bg-white flex-row justify-between items-center">

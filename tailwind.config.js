@@ -12,7 +12,8 @@ export default {
       },
 
       backgroundImage: {
-        logoImg: "url('./public/assets/images/logo.JPG')"
+        logoImg: "url('./public/assets/images/logo.JPG')",
+        heroImg: "url('./public/assets/images/courier_girl.JPG')"
       },
 
       fontFamily: {

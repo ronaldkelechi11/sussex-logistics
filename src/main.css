@@ -22,7 +22,7 @@
 
 /* Custom classes */
 .navlink {
-    @apply no-underline text-black;
+    @apply no-underline text-black font-poppins;
 }
 
 .navlink:hover {
