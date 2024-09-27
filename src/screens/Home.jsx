@@ -3,7 +3,6 @@ import Contact from '../components/Contact'
 import Landing from '../components/Landing'
 import Navbar from '../components/Navbar'
 import Services from '../components/Services'
-import Track from '../components/Track'
 
 const Home = () => {
     return (

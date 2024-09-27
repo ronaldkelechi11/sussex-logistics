@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&family=Roboto&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,4 +26,8 @@
 
 .navlink:hover {
     @apply scale-110 text-primary transition-[0.8s];
+}
+
+.drop-cap:first-letter {
+    @apply text-6xl font-bold float-left mr-2 leading-none;
 }

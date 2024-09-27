@@ -1,4 +1,4 @@
-import GlobalDelivery from "../assets/images/c005.png";
+import GlobalDelivery from "../../public/assets/images/c005.png";
 import FreightForwarding from "../../public/assets/images/1-3-2.jpg";
 import WarehouseImage from "../../public/assets/images/6-2.jpg";
 import RailFreightImage from "../../public/assets/images/rail_freight.jpg";
