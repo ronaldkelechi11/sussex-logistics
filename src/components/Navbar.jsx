@@ -19,7 +19,7 @@ const Navbar = () => {
                     reloadDocument
                     className="text-white text-3xl md:text-5xl font-kanit">
                     <div className="flex flex-row gap-2 items-center">
-                        <img src='../../public/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
+                        <img src='/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
                     </div>
                 </NavLink>
 
@@ -35,7 +35,7 @@ const Navbar = () => {
                     reloadDocument
                     className="text-white text-3xl md:text-5xl font-kanit">
                     <div className="flex flex-row gap-2 items-center">
-                        <img src='../../public/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
+                        <img src='/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
                     </div>
                 </NavLink>
 

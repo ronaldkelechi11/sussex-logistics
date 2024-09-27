@@ -1,9 +1,9 @@
-import GlobalDelivery from "../../public/assets/images/c005.png";
-import FreightForwarding from "../../public/assets/images/1-3-2.jpg";
-import WarehouseImage from "../../public/assets/images/6-2.jpg";
-import RailFreightImage from "../../public/assets/images/rail_freight.jpg";
-import ParcelsImage from "../../public/assets/images/parcels.jpg";
-import RoadFreightImage from "../../public/assets/images/road haulage.jpg";
+import GlobalDelivery from "/assets/images/c005.png";
+import FreightForwarding from "/assets/images/1-3-2.jpg";
+import WarehouseImage from "/assets/images/6-2.jpg";
+import RailFreightImage from "/assets/images/rail_freight.jpg";
+import ParcelsImage from "/assets/images/parcels.jpg";
+import RoadFreightImage from "/assets/images/road haulage.jpg";
 
 
 
