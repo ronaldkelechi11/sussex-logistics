@@ -3,16 +3,14 @@ import Contact from '../components/Contact'
 import Landing from '../components/Landing'
 import Navbar from '../components/Navbar'
 import Services from '../components/Services'
-import Track from '../components/Track'
-import '../styles/home.css'
 
 const Home = () => {
     return (
-        <div className="home">
+        <div className='flex flex-col'>
             <Navbar />
             <Landing />
             <About />
-            <Track />
+            {/* <Track /> */}
             <Services />
             <Contact />
         </div>

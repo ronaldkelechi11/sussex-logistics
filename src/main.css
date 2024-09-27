@@ -1,13 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins&family=Roboto&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
-    margin: 0;
-    padding: 0;
     scroll-behavior: smooth;
-    font-family: 'Oswald', Roboto, 'Open Sans';
 }
 
-#root {
-    height: 100vh;
-    width: 100vw;
+/* Using External Font-Faces */
+@font-face {
+    font-family: 'Kanit';
+    src: url('../public/assets/fonts/Kanit-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../public/assets/fonts/poppins.ttf');
+}
+
+
+
+/* Custom classes */
+.navlink {
+    @apply no-underline text-black font-poppins;
+}
+
+.navlink:hover {
+    @apply scale-110 text-primary transition-[0.8s];
+}
+
+.drop-cap:first-letter {
+    @apply text-6xl font-bold float-left mr-2 leading-none;
 }
