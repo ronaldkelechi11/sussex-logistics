@@ -18,7 +18,7 @@ const Services = () => {
             </div>
 
             <div className="p-3 gap-5 flex flex-col md:grid grid-cols-3">
-                <ServiceItem title={'Air Freight'} image={GlobalDelivery} description={'DHL connects people in over 220 countries and territories worldwide. Driven by the power of more than 600,000 employees, we deliver integrated services and tailored solutions for managing and transporting letters, goods and information.'} />
+                <ServiceItem title={'Air Freight'} image={GlobalDelivery} description={'Sussex Logistics connects people in over 220 countries and territories worldwide. Driven by the power of more than 600,000 employees, we deliver integrated services and tailored solutions for managing and transporting letters, goods and information.'} />
 
                 <ServiceItem title={'Ocean Freight'} image={FreightForwarding} description={'Streamline your global supply chain with our reliable ocean freight services. We offer customized shipping solutions, ensuring safe and timely delivery of your cargo across the world’s busiest ports. Trust us to navigate complex logistics, so you can focus on growing your business.'} />
 
