@@ -5,10 +5,6 @@ import RailFreightImage from "/assets/images/rail_freight.jpg";
 import ParcelsImage from "/assets/images/parcels.jpg";
 import RoadFreightImage from "/assets/images/road haulage.jpg";
 
-
-
-
-
 const Services = () => {
     return (
         <div className="w-full flex flex-col bg-white" id='services'>
