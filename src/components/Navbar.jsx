@@ -60,19 +60,13 @@ const Navbar = () => {
             <div className="h-[30%] bg-[#f5f5f5] md:flex justify-between flex-row items-center p-3 text-xl text-[#555555] hidden">
 
                 <div className="flex flex-row gap-4">
-                    <div className="font-poppins text-sm">
+                    <p className="font-poppins text-sm">
                         Mon - Fri : 09.00 AM - 06.00 PM
-                    </div>
+                    </p>
                 </div>
 
                 <div className="flex flex-row gap-4">
-                    <div className="font-poppins text-sm">
-                        billing4sussexlogistics@gmail.com
-                    </div>
-
-                    <div className="font-poppins text-sm">
-                        sussexlogisticsservice@gmail.com
-                    </div>
+                    <p className="font-poppins text-sm">billing4sussexlogistics@gmail.com</p>
                 </div>
             </div>
 
