@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import '../../styles/Admin.scss'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,7 +16,7 @@ function AdminFormBody() {
                 console.log(result);
                 if (result.status != 400) {
                     sessionStorage.setItem(SESSION_STORAGE_ADMINISLOGGEDIN, true)
-                    navigate("/")
+                    navigate(0)
                 }
             }).catch((err) => {
                 console.log(err);
@@ -26,13 +25,16 @@ function AdminFormBody() {
     }
 
     return (
-        <div className="overlay">
-            <div className="formBody">
-                <div className="header">Admin Login</div>
-                <div className="form">
-                    <input type="emails" placeholder='Email' value={adminEmail} onChange={(e) => { setAdminEmail(e.target.value) }} />
-                    <input type="password" placeholder='Password' value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} />
-                    <input type="button" value="Log In" onClick={Login} />
+        <div className="w-screen h-screen bg-[url('/assets/images/port_yard.jpg')] bg-center bg-cover bg-no-repeat flex justify-center items-center">
+            <div className="bg-[#00000080] w-full h-full flex flex-col justify-center items-center">
+                <img src="/assets/images/logo_transparent.PNG" className='h-32 w-32' alt="" />
+
+                <div className="text-3xl text-white font-poppins mb-4">Login</div>
+
+                <div className="flex flex-col gap-4">
+                    <input type="emails" placeholder='Email' value={adminEmail} onChange={(e) => { setAdminEmail(e.target.value) }} className='input-style' />
+                    <input type="password" placeholder='Password' value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} className='input-style' />
+                    <input type="button" value="Log In" onClick={Login} className='bg-primary p-[10px_30px] text-white font-poppins rounded-lg' />
                 </div>
             </div>
         </div>

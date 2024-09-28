@@ -31,3 +31,7 @@
 .drop-cap:first-letter {
     @apply text-6xl font-bold float-left mr-2 leading-none;
 }
+
+.input-style {
+    @apply w-[300px] p-3 bg-white rounded-lg font-poppins text-black placeholder:text-slate-500 outline-none text-sm;
+}
