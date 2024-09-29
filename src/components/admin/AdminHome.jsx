@@ -1,184 +1,288 @@
-import { useState } from 'react'
-import '../../styles/Admin.scss'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AdminHome() {
-    const url = import.meta.env.VITE_BACKEND_URL + "admin/add"
-    const navigate = useNavigate()
+    const url = import.meta.env.VITE_BACKEND_URL + "admin/add";
+    const navigate = useNavigate();
 
-    const [trackingCode, setTrackingCode] = useState("Tracking Code")
-    const [receiverName, setReceiverName] = useState("")
-    const [receiverAddress, setReceiverAddress] = useState("")
-    const [receiverEmailAddress, setReceiverEmailAddress] = useState("")
-    const [originCountry, setOriginCountry] = useState("")
-    const [destinationCountry, setDestinationCountry] = useState("")
-    const [shipingDate, setShipingDate] = useState("")
-    const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("")
-    const [paymentmode, setPaymentMode] = useState("Transfer")
-    const [typeOfShipment, setTypeOfShipment] = useState("")
+    // State declarations
+    const [trackingCode, setTrackingCode] = useState("Tracking Code");
+    const [receiverName, setReceiverName] = useState("");
+    const [receiverAddress, setReceiverAddress] = useState("");
+    const [receiverEmailAddress, setReceiverEmailAddress] = useState("");
+    const [originCountry, setOriginCountry] = useState("");
+    const [destinationCountry, setDestinationCountry] = useState("");
+    const [shipingDate, setShipingDate] = useState("");
+    const [expectedDeliveryDate, setExpectedDeliveryDate] = useState("");
+    const [paymentMode, setPaymentMode] = useState("Transfer");
+    const [typeOfShipment, setTypeOfShipment] = useState("");
 
+    // For shipping content
+    const [shipingContentArray, setShipingContentArray] = useState([]);
+    const [quantity, setQuantity] = useState("");
+    const [content, setContent] = useState("");
+    const [weight, setWeight] = useState("");
 
+    const addToArray = async () => {
+        await setShipingContentArray((prevArray) => [
+            ...prevArray,
+            { quantity, content, weight: `${weight}Kg` },
+        ]);
+        setQuantity("");
+        setContent("");
+        setWeight("");
+    };
 
-    // For Shiping content
-    const [shipingContentArray, setShipingContentArray] = useState([])
-    const [quantity, setQuantity] = useState("")
-    const [content, setContent] = useState("")
-    const [weight, setWeight] = useState("")
-    async function addToArray() {
-        await setShipingContentArray(prevArray => {
-            return [...prevArray, { quantity: quantity, content: content, weight: `${weight}Kg` }]
-        })
-        setQuantity("")
-        setContent("")
-        setWeight("")
-    }
+    // For tracking content
+    const [shipingTrackingArray, setShipingTrackingArray] = useState([]);
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
+    const [activity, setActivity] = useState("");
+    const [location, setLocation] = useState("");
 
+    const addToTrackingArray = async () => {
+        const dt = `${date} ${time}`;
+        setShipingTrackingArray((prevArray) => [
+            ...prevArray,
+            { datetime: dt, activity, location },
+        ]);
+        setDate("");
+        setTime("");
+        setActivity("");
+        setLocation("");
+    };
 
-    // For Tracking Content
-    const [shipingTrackingArray, setShipingTrackingArray] = useState([])
-    const [date, setDate] = useState("")
-    const [time, setTime] = useState("")
-    const [activity, setActivity] = useState("")
-    const [location, setLocation] = useState("")
+    const generateTrackingCode = () => {
+        setTrackingCode(Date.now());
+    };
 
-    // Add to tracking array list
-    async function addToTrackingArray() {
-        let dt = date + " " + time;
-        shipingTrackingArray.push({ datetime: dt, activity: activity, location: location })
-        setDate("")
-        setTime("")
-        setActivity("")
-        setLocation("")
-    }
-
-
-
-    function generatetrackingcode() {
-        setTrackingCode(Date.now())
-    }
-
-    function finish() {
-        if (trackingCode == "Tracking Code") {
-            alert("Tracking code cannot be blank. Please generate a tracking code")
-            return false;
+    const finish = () => {
+        if (trackingCode === "Tracking Code") {
+            alert("Tracking code cannot be blank. Please generate a tracking code.");
+            return;
         }
 
+        const myObject = {
+            id: trackingCode,
+            receiverName,
+            receiverAddress,
+            receiverEmailAddress,
+            originCountry,
+            destinationCountry,
+            shipingDate,
+            typeOfShipment,
+            expectedDeliveryDate,
+            paymentMode,
+            shipingContent: shipingContentArray,
+            shipingTracking: shipingTrackingArray,
+        };
 
-        var myObject = {
-            "id": trackingCode,
-            "receiverName": receiverName,
-            "receiverAddress": receiverAddress,
-            "receiverEmailAddress": receiverEmailAddress,
-            "originCountry": originCountry,
-            "destinationCountry": destinationCountry,
-            "shipingDate": shipingDate,
-            "typeOfShipment": typeOfShipment,
-            "expectedDeliveryDate": expectedDeliveryDate,
-            "paymentMode": paymentmode,
-            "shipingContent": shipingContentArray,
-            "shipingTracking": shipingTrackingArray
-        }
-        axios.post(url, { myObject: myObject })
+        axios
+            .post(url, { myObject })
             .then((result) => {
-                // Succesful
-                console.log(myObject);
-                if (result.status == 200) {
-                    alert("New package Added Succesfully with tracking code " + trackingCode)
+                if (result.status === 200) {
+                    alert(`New package added successfully with tracking code ${trackingCode}`);
+                } else {
+                    alert("Error saving package to the database.");
                 }
-                else {
-                    alert("Error saving Package to main Database")
-                }
-            }).catch((err) => {
-                alert("Error please make sure all fields are filled")
-                console.log(err);
+            })
+            .catch((err) => {
+                alert("Error, please make sure all fields are filled.");
+                console.error(err);
             });
-
-        // sent object
-        console.log(myObject);
-    }
-
-    function goToEdit() {
-        navigate("/admin/edit")
-    }
+    };
 
     return (
-        <div className="adminAddDetails">
-            <div className="header">Add a Package</div>
-            <div className="uid">{trackingCode} <button onClick={generatetrackingcode}>Generate a Tracking Code</button></div>
-            <form>
-                <input type="text" placeholder='Receiver Name' value={receiverName} onChange={(e) => setReceiverName(e.target.value)} />
-                <input type="address" placeholder='Receiver Address' value={receiverAddress} onChange={(e) => setReceiverAddress(e.target.value)} />
-                <input type="email" placeholder='Receiver Email Address' value={receiverEmailAddress} onChange={(e) => setReceiverEmailAddress(e.target.value)} />
-                <input type="text" placeholder='Type of Shipment' value={typeOfShipment} onChange={(e) => setTypeOfShipment(e.target.value)} />
-                <h1>Shiping Date:</h1>
-                <h1>Expected Delivery Date:</h1>
-                <input type="date" value={shipingDate} onChange={(e) => setShipingDate(e.target.value)} placeholder='Shiping Date(yyyy/mm/dd)' />
-                <input type="date" value={expectedDeliveryDate} onChange={(e) => setExpectedDeliveryDate(e.target.value)} placeholder='Expected Delivery Date(yyyy/mm/dd)' />
-                <input type="text" placeholder='Origin Country' value={originCountry} onChange={(e) => setOriginCountry(e.target.value)} />
-                <input type="text" placeholder='Destination Country' value={destinationCountry} onChange={(e) => setDestinationCountry(e.target.value)} />
-            </form>
-
-
-            <div className="shipingContentEditor">
-                <div className="grid">
-                    <p>No.</p>
-                    <p>Quantity</p>
-                    <p>Content</p>
-                    <p>Weight(Kg)</p>
-                    {shipingContentArray.map(shipingItem => {
-                        return (
-                            <>
-                                <h1>{shipingContentArray.indexOf(shipingItem) + 1}</h1>
-                                <h1>{shipingItem.quantity}</h1>
-                                <h1>{shipingItem.content}</h1>
-                                <h1>{shipingItem.weight}</h1>
-                            </>
-                        )
-                    })
-                    }
+        <div className="p-8 bg-[rgb(255,248,232)] min-h-screen">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center font-poppins">Add a New Package</h2>
+                <div className="mb-6 flex flex-col">
+                    <p className="text-lg font-semibold text-gray-400 mb-2 text-center">{trackingCode}</p>
+                    <button
+                        onClick={generateTrackingCode}
+                        className="px-4 py-2 bg-green-500 self-center text-white rounded hover:bg-blue-600 transition"
+                    >
+                        Generate
+                    </button>
                 </div>
-                <div className="add">
-                    <div className="form">
-                        <input type="text" placeholder='Content' value={content} onChange={(e) => setContent(e.target.value)} />
-                        <input type="number" placeholder='Quantity' value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-                        <input type="number" placeholder='Weight(KG)' value={weight} onChange={(e) => setWeight(e.target.value)} />
-                        <input type="button" value="Add" onClick={addToArray} />
+                <form className="space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Receiver Name"
+                        value={receiverName}
+                        onChange={(e) => setReceiverName(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Receiver Address"
+                        value={receiverAddress}
+                        onChange={(e) => setReceiverAddress(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Receiver Email Address"
+                        value={receiverEmailAddress}
+                        onChange={(e) => setReceiverEmailAddress(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Type of Shipment"
+                        value={typeOfShipment}
+                        onChange={(e) => setTypeOfShipment(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                    <div className="md:grid grid-cols-2 gap-4 flex flex-col my-5">
+                        <div>
+                            <label className="block text-black mb-2 font-extrabold">Shipping Date</label>
+                            <input
+                                type="date"
+                                value={shipingDate}
+                                onChange={(e) => setShipingDate(e.target.value)}
+                                className="w-full p-2 border rounded text-gray-400"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-black mb-2 font-extrabold">Expected Delivery Date</label>
+                            <input
+                                type="date"
+                                value={expectedDeliveryDate}
+                                onChange={(e) => setExpectedDeliveryDate(e.target.value)}
+                                className="w-full p-2 border rounded text-gray-400"
+                            />
+                        </div>
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Origin Country"
+                        value={originCountry}
+                        onChange={(e) => setOriginCountry(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Destination Country"
+                        value={destinationCountry}
+                        onChange={(e) => setDestinationCountry(e.target.value)}
+                        className="w-full p-2 border rounded"
+                    />
+                </form>
+
+                {/* Shipping Content Section */}
+                <div className="mt-8">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Shipping Content</h3>
+                    <div className="space-y-4">
+                        {shipingContentArray.map((item, index) => (
+                            <div key={index} className="p-4 bg-gray-50 border rounded">
+                                <p><strong>Quantity:</strong> {item.quantity}</p>
+                                <p><strong>Content:</strong> {item.content}</p>
+                                <p><strong>Weight:</strong> {item.weight}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="mt-4">
+                        <div className="md:grid grid-cols-3 gap-4 flex flex-col">
+                            <input
+                                type="text"
+                                placeholder="Content"
+                                value={content}
+                                onChange={(e) => setContent(e.target.value)}
+                                className="p-2 border rounded"
+                            />
+                            <input
+                                type="number"
+                                placeholder="Quantity"
+                                value={quantity}
+                                onChange={(e) => setQuantity(e.target.value)}
+                                className="p-2 border rounded"
+                            />
+                            <input
+                                type="number"
+                                placeholder="Weight (KG)"
+                                value={weight}
+                                onChange={(e) => setWeight(e.target.value)}
+                                className="p-2 border rounded"
+                            />
+                        </div>
+                        <button
+                            onClick={addToArray}
+                            className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+                        >
+                            Add Content
+                        </button>
                     </div>
                 </div>
-            </div>
 
-
-            <div className="shipmentTrackingEditor">
-                <div className="grid">
-                    <p>Date/Time</p>
-                    <p>Activity</p>
-                    <p>Location</p>
-                    {shipingTrackingArray.map(shipingItem => {
-                        return (
-                            <>
-                                <h1>{shipingItem.datetime}</h1>
-                                <h1>{shipingItem.activity}</h1>
-                                <h1>{shipingItem.location}</h1>
-                            </>
-                        )
-                    })
-                    }
-                </div>
-                <div className="add">
-                    <div className="form">
-                        <input type='date' placeholder='Date Time(yyyy/dd/mm hh:mm)' value={date} onChange={(e) => setDate(e.target.value)} />
-                        <input type='time' placeholder='Date Time(yyyy/dd/mm hh:mm)' value={time} onChange={(e) => setTime(e.target.value)} />
-                        <input type="text" placeholder='Activity' value={activity} onChange={(e) => setActivity(e.target.value)} />
-                        <input type="text" placeholder='Location(State, Country)' value={location} onChange={(e) => setLocation(e.target.value)} />
-                        <input type="button" value="Add" onClick={addToTrackingArray} />
+                {/* Tracking Section */}
+                <div className="mt-8">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-4">Shipment Tracking</h3>
+                    <div className="space-y-4">
+                        {shipingTrackingArray.map((item, index) => (
+                            <div key={index} className="p-4 bg-gray-50 border rounded">
+                                <p><strong>Date/Time:</strong> {item.datetime}</p>
+                                <p><strong>Activity:</strong> {item.activity}</p>
+                                <p><strong>Location:</strong> {item.location}</p>
+                            </div>
+                        ))}
                     </div>
+                    <div className="mt-4 md:grid grid-cols-4 gap-4 flex flex-col">
+                        <input
+                            type="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            className="p-2 border rounded text-gray-400"
+                        />
+                        <input
+                            type="time"
+                            value={time}
+                            onChange={(e) => setTime(e.target.value)}
+                            className="p-2 border rounded text-gray-400"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Activity"
+                            value={activity}
+                            onChange={(e) => setActivity(e.target.value)}
+                            className="p-2 border rounded"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Location"
+                            value={location}
+                            onChange={(e) => setLocation(e.target.value)}
+                            className="p-2 border rounded"
+                        />
+                    </div>
+                    <button
+                        onClick={addToTrackingArray}
+                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                    >
+                        Add Tracking
+                    </button>
+                </div>
+
+                {/* Finish Button */}
+                <div className="mt-10 flex flex-col gap-3 md:flex-row md:justify-between">
+                    <button
+                        onClick={finish}
+                        className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-primary transition"
+                    >
+                        Finish
+                    </button>
+
+                    <button
+                        onClick={() => navigate("/admin/edit")}
+                        className="px-4 py-2 bg-indigo-500 w-full text-white rounded hover:bg-gray-600 transition"
+                    >
+                        Edit a Package &raquo;
+                    </button>
                 </div>
             </div>
-            <div className="finish" onClick={finish}>Finish</div>
-            <div className="goToEdit" onClick={goToEdit}>Edit a Package {'>>'}</div>
         </div>
-    )
+    );
 }
 
-export default AdminHome
+export default AdminHome;

@@ -9,12 +9,12 @@
 /* Using External Font-Faces */
 @font-face {
     font-family: 'Kanit';
-    src: url('../public/assets/fonts/Kanit-Regular.ttf');
+    src: url('/assets/fonts/Kanit-Regular.ttf');
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: url('../public/assets/fonts/poppins.ttf');
+    src: url('/assets/fonts/poppins.ttf');
 }
 
 
