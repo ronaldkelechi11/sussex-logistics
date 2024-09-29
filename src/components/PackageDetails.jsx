@@ -90,7 +90,7 @@ function PackageDetails() {
                         <div className="text-center text-gray-700 mt-4">
                             {shipment.shipingContent.map((item, index) => (
                                 <div key={index} className="grid grid-cols-2 gap-4">
-                                    <p>{item.content} ({item.quantity})</p>
+                                    <p><strong> ({item.quantity})</strong> {item.content}</p>
                                     <p>{item.weight}</p>
                                 </div>
                             ))}

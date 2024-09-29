@@ -233,13 +233,13 @@ function AdminHome() {
                             type="date"
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
-                            className="p-2 border rounded text-gray-400"
+                            className="p-2 border rounded text-gray-400 w-full"
                         />
                         <input
                             type="time"
                             value={time}
                             onChange={(e) => setTime(e.target.value)}
-                            className="p-2 border rounded text-gray-400"
+                            className="p-2 border rounded text-gray-400 w-full"
                         />
                         <input
                             type="text"
@@ -258,7 +258,7 @@ function AdminHome() {
                     </div>
                     <button
                         onClick={addToTrackingArray}
-                        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                        className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-blue-600 transition"
                     >
                         Add Tracking
                     </button>
@@ -275,7 +275,7 @@ function AdminHome() {
 
                     <button
                         onClick={() => navigate("/admin/edit")}
-                        className="px-4 py-2 bg-indigo-500 w-full text-white rounded hover:bg-gray-600 transition"
+                        className="px-4 py-2 bg-primary w-full text-white rounded hover:bg-gray-600 transition"
                     >
                         Edit a Package &raquo;
                     </button>
