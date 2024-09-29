@@ -1,183 +1,170 @@
-import './PackageDetails.css'
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import BackButton from './BackButton'
-import { useAsyncError, useNavigate } from 'react-router-dom';
+import BackButton from './BackButton';
+import { useNavigate } from 'react-router-dom';
 
 function PackageDetails() {
-    const id = sessionStorage.getItem("uniqueid")
-    const url = import.meta.env.VITE_BACKEND_URL
-
-    const navigate = useNavigate()
-
+    const id = sessionStorage.getItem("uniqueid");
+    const url = import.meta.env.VITE_BACKEND_URL;
+    const [location, setLocation] = useState(null);
 
     const [shipment, setShipment] = useState({
-        "id": "",
-        "receiverName": "",
-        "receiverAddress": "",
-        "receiverEmailAddress": "",
-        "originCountry": "",
-        "destinationCountry": "",
-        "shipingDate": "",
-        "typeOfShipment": "",
-        "expectedDeliveryDate": "",
-        "paymentMode": "",
-        "shipingContent": [
-            {
-                "content": "",
-                "quantity": "",
-                "weight": ""
-            }
+        id: "",
+        receiverName: "",
+        receiverAddress: "",
+        receiverEmailAddress: "",
+        originCountry: "",
+        destinationCountry: "",
+        shipingDate: "",
+        typeOfShipment: "",
+        expectedDeliveryDate: "",
+        paymentMode: "",
+        shipingContent: [
+            { content: "", quantity: "", weight: "" }
         ],
-        "shipingTracking": [
-            {
-                "d": "",
-                "activity": "",
-                "location": ""
-            }
+        shipingTracking: [
+            { datetime: "", activity: "", location: "" }
         ]
-    },)
+    });
 
-    const [mapIsShowing, setMapIsShowing] = useState(false)
-    const [clickedCountry, setClickedCountry] = useState("")
-    var mapUrl = `https://www.google.com/maps/place/${clickedCountry}/`
-
+    // Function to update the location when a link is clicked
+    const showLocationOnMap = (locationName) => {
+        setLocation(locationName);
+    };
 
     useEffect(() => {
         axios.get(url + "track/" + id)
             .then((result) => {
                 if (result.status === 400) {
-                    alert("Invalid tracking code")
-                    //TODO: navigate("/")
+                    alert("Invalid tracking code");
+                } else {
+                    setShipment(result.data);
                 }
-                else {
-                    setShipment(result.data)
-                }
-            }).catch((err) => {
+            })
+            .catch((err) => {
                 console.log(err);
-                alert("Server Error")
-                //TODO: navigate("/")
+                alert("Server Error");
             });
-    }, [])
-
-    const trackinglocation = useRef()
-    function openMap() {
-        setClickedCountry(trackinglocation.current.innerHTML)
-        setMapIsShowing(true)
-        console.log(clickedCountry);
-        window.open(
-            mapUrl,
-            "Name the window here",
-            "width=500,height=500,screenX=500,screenY=500",
-        )
-    }
+    }, []);
 
     return (
-        <div className="trackingPage">
+        <div className="min-h-screen bg-[rgb(255,248,232)] to-primary p-6">
             <BackButton />
-            <div className="packageDetails">
-                <div className="child">
-                    <div className="header">TRACKING NO: <span>{id}</span></div>
-                    <div className="shipmentProfile">
-                        <div className="header">Delivery Details</div>
-                        <div className="body">
-                            <div className="date">Shipping Date: <span>{shipment.shipingDate}</span></div>
-                            <div className="expectedDeliveryDate">
-                                Expected Delivery Date: <span>{shipment.expectedDeliveryDate}</span>
-                            </div>
-                            <div className="destination">
-                                Destination Country: <span> {shipment.destinationCountry}</span>
-                            </div>
-                            <div className="origin">
-                                Origin Country: <span>{shipment.originCountry}</span>
-                            </div>
-                            <div className="receiverName">
-                                Receiver Name: <span>{shipment.receiverName}</span>
-                            </div>
-                            <div className="receiverAddress">
-                                Receiver Address: <span>{shipment.receiverAddress}</span>
-                            </div>
-                            <div className="receiverAddress">
-                                Receiver Email Address: <span>{shipment.receiverEmailAddress}</span>
-                            </div>
-                            <div className="receiverAddress">
-                                Type of Shipment: <span>{shipment.typeOfShipment}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="shipmentDetails">
-                        <div className="header">Shipment Content/Description</div>
-                        <div className="body">
-                            <p>Quantity</p>
-                            <p>Content</p>
-                            <p>Weight(Kg)</p>
-                            {
-                                shipment.shipingContent.map(shipingItem => {
-                                    return (
-                                        <>
-                                            <h1>{shipingItem.quantity}</h1>
-                                            <h1>{shipingItem.content}</h1>
-                                            <h1>{shipingItem.weight}</h1>
-                                        </>
-                                    )
-                                })
-                            }
-                        </div>
-                    </div>
-                    <div className="shipmentTracking">
-                        <div className="header">Shipment Travel History</div>
-                        <div className="body">
-                            <p>Date/Time</p>
-                            <p>Activity</p>
-                            <p>Location</p>
-                            {
-                                shipment.shipingTracking.map(trackingItem => {
-                                    return (
-                                        <>
-                                            <h1 key={1}>{trackingItem.datetime}</h1>
-                                            <h1 key={2}>{trackingItem.activity}</h1>
-                                            <h1 className='underlined' onClick={openMap} ref={trackinglocation} key={3}>{trackingItem.location}</h1>
-                                        </>
-                                    )
-                                })
 
-                            }
-                        </div>
-                    </div>
-                    <div className="shipperDetails">
-                        <div className="header">Shiper details</div>
-                        <div className="body">
-                            <p>Courier</p>
-                            <h1>Sussex Freight Carrier: E132DF</h1>
+            <div className="container mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden p-6 mb-8">
 
-                            <p>Type of Vessel</p>
-                            <h1>Freight Carrier</h1>
+                <div className=" w-full flex justify-center items-center">
+                    <img src="/assets/images/logo_transparent.PNG" alt="" className="w-[150px] h-[150px]" />
+                </div>
+                <h2 className="text-2xl font-bold text-primary text-center uppercase mb-6">Tracking No: <span className="text-black">{id}</span></h2>
 
-                            <p>Type of Delivery</p>
-                            <h1>Door-Delivery</h1>
-
-                            <p>Status</p>
-                            <h1>On Transit...</h1>
-
-                            <p>Agent Name</p>
-                            <h1>Micheal Johannes</h1>
-
-                            <p>Comments</p>
-
-
-                            <h1></h1>
-                        </div>
+                {/* Delivery Details */}
+                <div className="mb-8 mt-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                        <p><span className="font-bold">Receiver Name:</span> {shipment.receiverName}</p>
+                        <p><span className="font-bold">Receiver Email:</span> {shipment.receiverEmailAddress}</p>
+                        <p><span className="font-bold">Receiver Address:</span> {shipment.receiverAddress}</p>
+                        <p><span className="font-bold">Destination Country:</span> {shipment.destinationCountry}</p>
+                        <p><span className="font-bold">Origin Country:</span> {shipment.originCountry}</p>
+                        <p><span className="font-bold">Type of Shipment:</span> {shipment.typeOfShipment}</p>
+                        <p><span className="font-bold">Shipping Date:</span> {shipment.shipingDate}</p>
+                        <p><span className="font-bold">Expected Delivery Date:</span> {shipment.expectedDeliveryDate}</p>
                     </div>
                 </div>
-                {/* <div className={mapIsShowing ? 'secondchild' : 'invisible'}>
-                    <div className="cancelButton" onClick={() => { setMapIsShowing(false) }}></div>
-                    <div className="center">
-                        <iframe src={mapUrl} frameBorder="0"></iframe>
+
+                {/* Shipment Content */}
+                <div className="mb-8">
+                    <div className="grid grid-cols-2 gap-4 text-center font-semibold text-gray-800 bg-indigo-50 p-4 rounded-md shadow">
+                        {/* <p>Quantity</p> */}
+                        <p>Content</p>
+                        <p>Weight (Kg)</p>
                     </div>
-                </div> */}
+                    <div className="text-center text-gray-700 mt-4">
+                        {shipment.shipingContent.map((item, index) => (
+                            <div key={index} className="grid grid-cols-2 gap-4">
+                                <p>{item.content} ({item.quantity})</p>
+                                <p>{item.weight}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
+                {/* Shipment Travel History */}
+                <div className="mb-8">
+                    <div className="grid grid-cols-3 gap-4 text-center font-semibold text-gray-800 bg-indigo-50 p-4 rounded-md shadow">
+                        <p>Time</p>
+                        <p>Activity</p>
+                        <p>Location</p>
+                    </div>
+                    <div className="text-center flex flex-col gap-3 text-gray-700 mt-4">
+                        {shipment.shipingTracking.map((trackingItem, index) => (
+                            <div key={index} className="grid grid-cols-3 gap-4 ">
+                                <p>{trackingItem.datetime}</p>
+                                <p>{trackingItem.activity}</p>
+                                <p
+                                    className="underline cursor-pointer text-indigo-600 hover:text-indigo-400"
+                                    onClick={() => showLocationOnMap(trackingItem.location)}>
+                                    {trackingItem.location}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
+                {/* Shipper Details */}
+                <div>
+                    <h3 className="text-xl font-semibold text-indigo-500 mb-4">Shipper Details</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                        <p><span className="font-bold">Courier:</span> Sussex Freight Carrier: E132DF</p>
+                        <p><span className="font-bold">Type of Vessel:</span> Freight Carrier</p>
+                        <p><span className="font-bold">Type of Delivery:</span> Door-Delivery</p>
+                        <p><span className="font-bold">Status:</span> On Transit...</p>
+                        <p><span className="font-bold">Agent Name:</span> Michael Johannes</p>
+                    </div>
+                </div>
+
+
+
+
+                {/* Display the map when location is set */}
+                {location && (
+                    <div className="mt-8">
+                        <h2 className="text-lg font-semibold mb-4">Map for {location}</h2>
+                        <iframe
+                            title={`Map of ${location}`}
+                            width="100%"
+                            height="400"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            allowFullScreen
+                            src={`https://www.google.com/maps/embed/v1/place?q=${location}`}
+                        ></iframe>
+                    </div>
+                )}
+
+
+            </div>
+
+            <div className="contact-section bg-white p-6 shadow-lg rounded-lg mt-8">
+                <h2 className="text-lg font-bold mb-4">Need Assistance or Clarification?</h2>
+                <p className="text-gray-700 mb-4">For any issues or clarifications regarding your package, please feel free to contact us at:</p>
+                <ul className="space-y-2">
+                    <li>
+                        <a href="mailto:billing4sussexlogistics@gmail.com" className="text-gray-700 underline text-sm text-wrap hover:underline">
+                            billing4sussexlogistics@gmail.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:sussexlogisticsservice@gmail.com" className="text-gray-700 underline text-sm text-wrap hover:underline">
+                            sussexlogisticsservice@gmail.com
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    )
+    );
 }
 
-export default PackageDetails
+export default PackageDetails;
