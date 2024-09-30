@@ -5,7 +5,10 @@ import { p } from "framer-motion/client";
 
 function PackageDetails() {
     const id = sessionStorage.getItem("uniqueid");
+
     const url = import.meta.env.VITE_BACKEND_URL;
+    const maps_api = import.meta.env.GOOGLE_MAPS_API;
+
     const [location, setLocation] = useState(null);
 
     const [shipment, setShipment] = useState({
@@ -147,7 +150,7 @@ function PackageDetails() {
                                 style={{ border: 0 }}
                                 loading="lazy"
                                 allowFullScreen
-                                src={`https://www.google.com/maps/embed/v1/place?q=${location}`}
+                                src={`https://www.google.com/maps/embed/v1/place?q=${location}&key=${maps_api}`}
                             ></iframe>
                         </div>
                     )}
