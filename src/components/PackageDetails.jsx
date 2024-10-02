@@ -86,10 +86,10 @@ function PackageDetails() {
                     {/* Shipment Content */}
                     <div className="mb-8">
                         <div className="grid grid-cols-2 gap-4 text-center font-semibold text-gray-800 bg-indigo-50 p-4 rounded-md shadow">
-                            {/* <p>Quantity</p> */}
                             <p>Content</p>
                             <p>Weight (Kg)</p>
                         </div>
+
                         <div className="text-center text-gray-700 mt-4">
                             {shipment.shipingContent.map((item, index) => (
                                 <div key={index} className="grid grid-cols-2 gap-4">
@@ -98,6 +98,7 @@ function PackageDetails() {
                                 </div>
                             ))}
                         </div>
+                        
                     </div>
 
 

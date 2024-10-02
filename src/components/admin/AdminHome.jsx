@@ -97,8 +97,10 @@ function AdminHome() {
         <div className="p-8 bg-[rgb(255,248,232)] min-h-screen">
             <div className="bg-white rounded-lg shadow-lg p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center font-poppins">Add a New Package</h2>
+
                 <div className="mb-6 flex flex-col">
                     <p className="text-lg font-semibold text-gray-400 mb-2 text-center">{trackingCode}</p>
+
                     <button
                         onClick={generateTrackingCode}
                         className="px-4 py-2 bg-green-500 self-center text-white rounded hover:bg-blue-600 transition"
@@ -106,6 +108,7 @@ function AdminHome() {
                         Generate
                     </button>
                 </div>
+
                 <form className="space-y-4">
                     <input
                         type="text"
@@ -215,6 +218,9 @@ function AdminHome() {
                         </button>
                     </div>
                 </div>
+
+
+
 
                 {/* Tracking Section */}
                 <div className="mt-8">
