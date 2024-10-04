@@ -131,7 +131,7 @@ function PackageDetails() {
                             <p><span className="font-bold">Courier:</span> Sussex Freight Carrier: E132DF</p>
                             <p><span className="font-bold">Type of Vessel:</span> Air Freight Carrier</p>
                             <p><span className="font-bold">Type of Delivery:</span> Door-Delivery</p>
-                            <p><span className="font-bold">Status:</span> Pending</p>
+                            {/* <p><span className="font-bold">Status: </span> Pending</p> */}
                             <p><span className="font-bold">Agent Name:</span> Steve Harrison</p>
                         </div>
                     </div>
