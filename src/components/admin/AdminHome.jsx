@@ -53,8 +53,35 @@ function AdminHome() {
         setLocation("");
     };
 
+    // Generate random code
+    function generateRandomString() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const digits = "0123456789";
+
+        // Generate 3 random letters (A-Z)
+        let part1 = "";
+        for (let i = 0; i < 3; i++) {
+            part1 += letters[Math.floor(Math.random() * letters.length)];
+        }
+
+        // Generate 5 random digits (0-9)
+        let part2 = "";
+        for (let i = 0; i < 5; i++) {
+            part2 += digits[Math.floor(Math.random() * digits.length)];
+        }
+
+        // Generate 4 random letters (A-Z)
+        let part3 = "";
+        for (let i = 0; i < 4; i++) {
+            part3 += letters[Math.floor(Math.random() * letters.length)];
+        }
+
+        // Combine parts with dashes
+        return `${part1}-${part2}-${part3}`;
+    }
+
     const generateTrackingCode = () => {
-        setTrackingCode(Date.now());
+        setTrackingCode(generateRandomString());
     };
 
     const finish = () => {
