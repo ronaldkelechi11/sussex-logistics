@@ -1,25 +1,43 @@
+import React from 'react';
 
 const About = () => {
     return (
-        <div className="flex p-2 justify-evenly flex-row items-center font-poppins md:h-[90vh] h-auto" id='about'>
-            <div className="md:w-[50%] w-full h-full p-2 flex flex-col justify-evenly">
-                <p className="md:text-6xl text-4xl capitalize">About <span className="text-primary">Us</span></p>
-                <div className="font-poppins drop-cap">
-                    SUSSEX LOGISTICS is a freight forwarder offering global logistics solutions World wide. Encouraging an entrepreneurial spirit together with our professionalism, service orientation and the combination of years of experience in the industry enables us to deliver quality for competitive prices.
-                    <br />
-                    <br />
-                    We do not plan to be the biggest in the world rather the best in our market. Through innovation, such as user friendly IT-system, low overhead, strong relationship with our suppliers we are one of the top choices in our field
-                    <br />
-                    <br />
-                    Wе are mіndful оf building a hеаlthу rеlаtіоnѕhір with оur сuѕtоmеrѕ, ѕuррlіеrѕ sub-contractors аnd соnѕultаntѕ, оur gоаl іѕ co-operation, tеаmwоrk tо achieving a grand ѕuссеѕѕful рrоjесt at аll tіmе.
-                    Wе are mіndful оf building a hеаlthу rеlаtіоnѕhір with оur сuѕtоmеrѕ, ѕuррlіеrѕ sub-contractors аnd соnѕultаntѕ, оur gоаl іѕ co-operation, tеаmwоrk tо achieving a grand ѕuссеѕѕful рrоjесt at аll tіmе
+        <section className="py-20">
+            <div className="max-w-7xl mx-auto px-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="relative">
+                        <img 
+                            src="/about-image.jpg" 
+                            alt="Logistics Operations" 
+                            className="rounded-lg shadow-xl"
+                        />
+                    </div>
+                    <div>
+                        <h2 className="text-3xl font-bold mb-6">About Sussex Logistics</h2>
+                        <p className="text-gray-600 mb-6">
+                            With over 20 years of experience in global logistics, we provide 
+                            comprehensive supply chain solutions tailored to your business needs.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                'Global network coverage',
+                                'Modern fleet and facilities',
+                                'Expert logistics professionals',
+                                'Advanced tracking systems'
+                            ].map((item, index) => (
+                                <li key={index} className="flex items-center">
+                                    <svg className="w-5 h-5 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </section>
+    );
+};
 
-
-            <div className="w-[50%] h-full p-2 md:flex flex-col hidden bg-logoImg bg-no-repeat bg-center bg-cover"></div>
-        </div>
-    )
-}
-
-export default About
+export default About;

@@ -6,32 +6,16 @@
     scroll-behavior: smooth;
 }
 
-/* Using External Font-Faces */
-@font-face {
-    font-family: 'Kanit';
-    src: url('/assets/fonts/Kanit-Regular.ttf');
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('/assets/fonts/poppins.ttf');
-}
-
-
-
-/* Custom classes */
-.navlink {
-    @apply no-underline text-black font-poppins;
-}
-
-.navlink:hover {
-    @apply scale-110 text-primary transition-[0.8s];
-}
-
-.drop-cap:first-letter {
-    @apply text-6xl font-bold float-left mr-2 leading-none;
-}
-
-.input-style {
-    @apply w-[300px] p-3 bg-white rounded-lg font-poppins text-black placeholder:text-slate-500 outline-none text-sm;
+.animate-slideDown {
+    animation: slideDown 0.3s ease-in-out forwards;
 }
