@@ -27,11 +27,11 @@ const Navbar = () => {
                     <div className="flex space-x-6">
                         <div className="flex items-center text-white/90 hover:text-white transition-colors duration-300">
                             <FaPhone className="w-4 h-4 mr-2" />
-                            <span className="text-sm">(123) 456-7890</span>
+                            <span className="text-sm">+1 (224) 230-0187</span>
                         </div>
                         <div className="flex items-center text-white/90 hover:text-white transition-colors duration-300">
                             <FaEnvelope className="w-4 h-4 mr-2" />
-                            <span className="text-sm">info@sussexlogistics.com</span>
+                            <span className="text-sm">sussexlogisticsservice@gmail.com</span>
                         </div>
                     </div>
 
