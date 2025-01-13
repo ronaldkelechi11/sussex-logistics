@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaPhone, FaEnvelope, FaBars, FaTimes, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -58,9 +59,9 @@ const Navbar = () => {
                 <div className="max-w-7xl mx-auto px-4">
                     <div className="flex justify-between">
                         {/* Logo */}
-                        <div className="flex items-center">
-                            <img className="w-32 h-32 hover:opacity-90 transition-opacity duration-300" src='/assets/images/logo.JPG' alt="Sussex Logistics" />
-                        </div>
+                        <NavLink reloadDocument className="flex items-center">
+                            <img className="w-32 h-32 hover:opacity-90 transition-opacity duration-300" src='/images/logo.JPG' alt="Sussex Logistics" />
+                        </NavLink>
 
                         {/* Desktop Navigation */}
                         <div className="hidden md:flex items-center space-x-8">
