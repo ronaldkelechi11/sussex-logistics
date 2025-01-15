@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deletePackage } from "../api/database.api.js";
 import { toast } from "react-toastify";
-import { Loader2, MapPin, Mail, User, Package, Pencil } from "lucide-react";
+import { Loader2, MapPin, Mail, User, Package, Clipboard } from "lucide-react";
 import { getCountryFlag } from '../utils/countryFlags';
 
 
@@ -37,6 +37,10 @@ const PackageItem = ({ item, onDeleteSuccess, onEditClick }) => {
                         <div className="flex items-center gap-2">
                             <Package className="h-5 w-5 text-primary" />
                             <span className="font-semibold text-lg">{item?.trackingId}</span>
+                            <Clipboard onClick={() => {
+                                navigator.clipboard.writeText(item?.trackingId),
+                                    toast.success('Tracking Code Copied')
+                            }} className="h-4 w-4 cursor-pointer text-gray-500 hover:text-gray-700" />
                         </div>
                         <div className={`px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${item?.status
                             ? 'bg-green-100 text-green-800'
@@ -113,13 +117,6 @@ const PackageItem = ({ item, onDeleteSuccess, onEditClick }) => {
                         onClick={() => onEditClick(item)}
                     >
                         Edit
-                    </button>
-                    <button
-                        onClick={() => onEditClick(item)}
-                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
-                        title="Edit package"
-                    >
-                        <Pencil className="h-5 w-5" />
                     </button>
                 </div>
             </div>
