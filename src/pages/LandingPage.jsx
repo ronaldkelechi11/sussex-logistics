@@ -4,9 +4,10 @@ import Services from '../components/Services';
 import About from '../components/About';
 import Achievements from '../components/Achievements';
 import Testimonials from '../components/Testimonials';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
-const Landing = () => {
+const LandingPage = () => {
     return (
         <div className="w-full">
             <Navbar />
@@ -15,9 +16,10 @@ const Landing = () => {
             <About />
             <Achievements />
             <Testimonials />
+            <Contact />
             <Footer />
         </div>
     );
 };
 
-export default Landing;
+export default LandingPage;

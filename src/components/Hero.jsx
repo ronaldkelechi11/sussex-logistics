@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { FaSearch, FaTruckMoving } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
     const [trackingNumber, setTrackingNumber] = useState('');
+    const navigate = useNavigate();
 
     const handleTracking = (e) => {
         e.preventDefault();
-        // Add tracking logic here
+        navigate(`/package/${trackingNumber}`);
         console.log('Tracking number:', trackingNumber);
     };
 

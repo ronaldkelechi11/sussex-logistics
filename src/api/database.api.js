@@ -28,11 +28,13 @@ export const allPackage = () => {
 }
 
 // Edit Package
-export const editPackage = (payload) => {
-    return api.put('/package', payload)
+export const updatePackage = (trackingId, payload) => {
+    return api.put(`/package/${trackingId}`, payload)
 }
 
 // Delete Package
-export const deletePackage = (trackingId) => {
+export const deletePackage = ({ trackingId }) => {
+    console.log(trackingId);
+
     return api.delete(`/package/${trackingId}`)
 }

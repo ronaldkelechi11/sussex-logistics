@@ -27,9 +27,15 @@ const LoginPage = () => {
         setError('');
 
         try {
-            loginAdmin(formData);
-            toast.success('Login successful!');
+            const response = await loginAdmin(formData);
+            if (response) {
+
+                toast.success('Login successful!');
+                navigate('/admin-dashboard');
+            }
         } catch (err) {
+            console.log(err);
+
             setError(err);
         } finally {
             setIsLoading(false);
