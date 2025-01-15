@@ -26,3 +26,4 @@ dist-ssr
 # Personal
 src/assets/bootstrap
 .env
+data

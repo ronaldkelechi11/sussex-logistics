@@ -1,92 +1,113 @@
-import { useState } from 'react';
-import { MenuHamburger, MenuHotdog } from "@iconsans/react/linear"
-import { Link, NavLink } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { FaPhone, FaEnvelope, FaBars, FaTimes, FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-    const [isOpen, setIsOpen] = useState(false)
+    useEffect(() => {
+        const handleScroll = () => {
+            const navbarHeight = document.getElementById('mainNav').offsetTop;
+            setIsScrolled(window.scrollY > navbarHeight);
+        };
 
-    function toggleNav() {
-        setIsOpen(!isOpen)
-    }
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const navLinks = ['Home', 'Services', 'About', 'Track', 'Contact'];
 
     return (
-        <div className="flex w-full flex-col">
-
-            {/* Desktop View */}
-            <div className="hidden md:flex flex-row gap-5 text-primary justify-between items-center py-1">
-                <NavLink
-                    reloadDocument
-                    className="text-white text-3xl md:text-5xl font-kanit">
-                    <div className="flex flex-row gap-2 items-center">
-                        <img src='/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
+        <>
+            {/* Top Bar - Only visible when not scrolled */}
+            <div className={`bg-gradient-to-r from-primary-600 to-primary-800 transition-transform duration-300 ${isScrolled ? '-translate-y-full' : 'translate-y-0'
+                }`}>
+                <div className="max-w-7xl mx-auto px-4 py-3 hidden md:flex justify-between items-center">
+                    <div className="flex space-x-6">
+                        <div className="flex items-center text-white/90 hover:text-white transition-colors duration-300">
+                            <FaPhone className="w-4 h-4 mr-2" />
+                            <span className="text-sm">+1 (224) 230-0187</span>
+                        </div>
+                        <div className="flex items-center text-white/90 hover:text-white transition-colors duration-300">
+                            <FaEnvelope className="w-4 h-4 mr-2" />
+                            <span className="text-sm">sussexlogisticsservice@gmail.com</span>
+                        </div>
                     </div>
-                </NavLink>
 
-                <NavLinks />
-            </div>
-
-
-            {/* Mobile Buttons */}
-            <div
-                className="md:hidden p-2 transition-all cursor-pointer text-white flex justify-between items-center"
-                onClick={toggleNav}>
-                <NavLink
-                    reloadDocument
-                    className="text-white text-3xl md:text-5xl font-kanit">
-                    <div className="flex flex-row gap-2 items-center">
-                        <img src='/assets/images/logo.JPG' alt="Sussex Logistics Logo" className="md:h-16 md:w-16 h-14 w-14" />
+                    {/* Social Icons */}
+                    <div className="flex items-center space-x-4">
+                        <a href="#" className="text-white/90 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                            <FaFacebookF className="w-4 h-4" />
+                        </a>
+                        <a href="#" className="text-white/90 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                            <FaTwitter className="w-4 h-4" />
+                        </a>
+                        <a href="#" className="text-white/90 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                            <FaLinkedinIn className="w-4 h-4" />
+                        </a>
+                        <a href="#" className="text-white/90 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                            <FaInstagram className="w-4 h-4" />
+                        </a>
                     </div>
-                </NavLink>
-
-                {
-                    isOpen ?
-                        <MenuHotdog className="h-10 w-10 text-black" /> :
-                        <MenuHamburger className="h-10 w-10 text-black" />
-                }
-            </div>
-
-
-            {isOpen &&
-                <>
-                    <div className="text-primary basis-full md:hidden">
-                        <NavLinks />
-                    </div>
-                </>
-            }
-
-
-            {/* Bottom PART */}
-            <div className="h-[30%] bg-[#f5f5f5] md:flex justify-between flex-row items-center p-3 text-xl text-[#555555] hidden">
-
-                <div className="flex flex-row gap-4">
-                    <p className="font-poppins text-sm">
-                        Mon - Fri : 09.00 AM - 06.00 PM
-                    </p>
-                </div>
-
-                <div className="flex flex-row gap-4">
-                    <p className="font-poppins text-sm">billing4sussexlogistics@gmail.com</p>
                 </div>
             </div>
 
-        </div>
-    )
-}
+            {/* Main Navbar */}
+            <nav id="mainNav" className={`bg-white shadow-md transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0 animate-slideDown' : ''
+                }`}>
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex justify-between">
+                        {/* Logo */}
+                        <NavLink reloadDocument className="flex items-center">
+                            <img className="w-32 h-32 hover:opacity-90 transition-opacity duration-300" src='/images/logo.JPG' alt="Sussex Logistics" />
+                        </NavLink>
 
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center space-x-8">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link}
+                                    href={`#${link.toLowerCase()}`}
+                                    className="relative text-gray-700 font-medium transition-colors duration-300 hover:text-primary-600 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-primary-600 after:left-0 after:-bottom-1 after:transition-all after:duration-300 hover:after:w-full"
+                                >
+                                    {link}
+                                </a>
+                            ))}
+                        </div>
 
-function NavLinks() {
+                        {/* Mobile Menu Button */}
+                        <div className="md:hidden flex items-center">
+                            <button
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                className="text-gray-700 hover:text-primary-600 transition-colors duration-300"
+                            >
+                                {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-    return (
-        <div className='flex flex-col justify-center md:flex-row gap-4 items-center mt-3 p-2'>
-            <a className='navlink' href="/#home">Home</a>
-            <a className='navlink' href='/#about'>About</a>
-            <Link className='navlink hidden md:flex' to={"/track"}>Track</Link>
-            <a className='navlink' href="/#services">Services</a>
-            <a className='navlink' href="/#contact">Contact</a>
-            <Link className='navlink' to="/admin">Portal</Link>
-        </div >
-    )
-}
+                {/* Mobile Menu */}
+                {isMenuOpen && (
+                    <div className="md:hidden">
+                        <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link}
+                                    href={`#${link.toLowerCase()}`}
+                                    className="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-primary-50 rounded-md transition-all duration-300"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    {link}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </nav>
+        </>
+    );
+};
 
-export default Navbar
+export default Navbar;

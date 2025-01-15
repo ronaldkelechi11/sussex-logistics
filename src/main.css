@@ -6,32 +6,83 @@
     scroll-behavior: smooth;
 }
 
-/* Using External Font-Faces */
-@font-face {
-    font-family: 'Kanit';
-    src: url('/assets/fonts/Kanit-Regular.ttf');
+/* Navbar Slide Down Animation */
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('/assets/fonts/poppins.ttf');
+.animate-slideDown {
+    animation: slideDown 0.3s ease-in-out forwards;
 }
 
+/* Truck Drive Animation */
+@keyframes drive {
+    from {
+        left: 0;
+    }
 
-
-/* Custom classes */
-.navlink {
-    @apply no-underline text-black font-poppins;
+    to {
+        left: 99%;
+    }
 }
 
-.navlink:hover {
-    @apply scale-110 text-primary transition-[0.8s];
+.animate-drive {
+    animation: drive 4s linear infinite;
 }
 
-.drop-cap:first-letter {
-    @apply text-6xl font-bold float-left mr-2 leading-none;
+/* Truck Shadow Animation */
+@keyframes shadow {
+
+    0%,
+    100% {
+        transform: scaleX(1);
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scaleX(1.2);
+        opacity: 0.2;
+    }
 }
 
-.input-style {
-    @apply w-[300px] p-3 bg-white rounded-lg font-poppins text-black placeholder:text-slate-500 outline-none text-sm;
+.animate-shadow {
+    animation: shadow 2s infinite ease-in-out;
+}
+
+/* Carousel Custom Styles */
+.service-slider {
+    margin: 0 -1rem;
+}
+
+.service-slider .slick-slide {
+    padding: 0 1rem;
+}
+
+.service-slider .slick-dots {
+    bottom: -2.5rem;
+}
+
+.service-slider .slick-dots li button:before {
+    color: theme('colors.primary.600');
+}
+
+.service-slider .slick-dots li.slick-active button:before {
+    color: theme('colors.primary.600');
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 640px) {
+    .service-slider {
+        margin: 0 -0.5rem;
+    }
+    
+    .service-slider .slick-slide {
+        padding: 0 0.5rem;
+    }
 }

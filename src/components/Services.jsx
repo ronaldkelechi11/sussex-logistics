@@ -1,44 +1,172 @@
-import GlobalDelivery from "/assets/images/c005.png";
-import FreightForwarding from "/assets/images/1-3-2.jpg";
-import WarehouseImage from "/assets/images/6-2.jpg";
-import RailFreightImage from "/assets/images/rail_freight.jpg";
-import ParcelsImage from "/assets/images/parcels.jpg";
-import RoadFreightImage from "/assets/images/road haulage.jpg";
+import React, { useState } from 'react';
+import { FaShip, FaTruck, FaPlane, FaWarehouse, FaArrowRight, FaGlobeAmericas, FaClock, FaChartLine } from 'react-icons/fa';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Services = () => {
+    const services = [
+        {
+            icon: FaShip,
+            title: 'Ocean Freight',
+            description: 'Comprehensive maritime logistics solutions with global reach and efficient cargo handling',
+            image: '/images/ocean-freight.jpeg',
+            stats: {
+                coverage: '150+ Ports',
+                time: '15-45 Days',
+                reliability: '99.5%'
+            },
+            features: [
+                'Container shipping',
+                'Bulk cargo handling',
+                'Port-to-port delivery',
+                'Real-time tracking'
+            ]
+        },
+        {
+            icon: FaTruck,
+            title: 'Land Transport',
+            description: 'Reliable road freight services with extensive network coverage and timely delivery',
+            image: '/images/land-transport.jpg',
+            stats: {
+                coverage: '48 States',
+                time: '1-5 Days',
+                reliability: '99.8%'
+            },
+            features: [
+                'Full truckload',
+                'Less than truckload',
+                'Express delivery',
+                'Last-mile service'
+            ]
+        },
+        {
+            icon: FaPlane,
+            title: 'Air Freight',
+            description: 'Fast and secure air cargo services for time-critical shipments worldwide',
+            image: '/images/air-freight.jpg',
+            stats: {
+                coverage: '200+ Cities',
+                time: '1-3 Days',
+                reliability: '99.9%'
+            },
+            features: [
+                'Express air freight',
+                'Charter services',
+                'Door-to-door delivery',
+                'Temperature-controlled'
+            ]
+        },
+        {
+            icon: FaWarehouse,
+            title: 'Warehousing',
+            description: 'State-of-the-art storage facilities with advanced inventory management systems',
+            image: '/images/warehousing.jpg',
+            stats: {
+                coverage: '50+ Locations',
+                capacity: '1M+ sqft',
+                reliability: '99.9%'
+            },
+            features: [
+                'Inventory management',
+                'Pick and pack',
+                'Cross-docking',
+                'Climate control'
+            ]
+        }
+    ];
+
+    const [activeService, setActiveService] = useState(null);
+
+    const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }
+        ]
+    };
+
     return (
-        <div className="w-full flex flex-col bg-white" id='services'>
-            <div className="flex flex-col">
-                <p className="text-4xl md:text-6xl text-primary font-poppins text-center">Our <span className="text-black">Services</span></p>
-                <div className="md:text-lg text-sm p-2 text-[#909090] font-poppins text-center">We have been providing services to multiple international clients for more than 25 years consecutively and are ready to continue increasing our clientel.</div>
+        <section className="py-20 bg-gradient-to-b from-gray-50 to-white overflow-hidden" id="services">
+            <div className="max-w-7xl mx-auto px-4">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl font-bold mb-4">Our Services</h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto px-4 sm:px-6">
+                        Comprehensive logistics solutions tailored to your needs with cutting-edge technology and global reach
+                    </p>
+                </div>
+
+                <div className="relative -mx-4 sm:mx-0">
+                    <Slider {...sliderSettings} className="service-slider">
+                        {services.map((service, index) => (
+                            <div key={index} className="px-4">
+                                <div
+                                    className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 h-full"
+                                    onMouseEnter={() => setActiveService(index)}
+                                    onMouseLeave={() => setActiveService(null)}
+                                >
+                                    <div className="aspect-w-16 aspect-h-9">
+                                        <img
+                                            src={service.image}
+                                            alt={service.title}
+                                            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                                        />
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="flex items-center mb-4">
+                                            <service.icon className="w-8 h-8 text-primary-600" />
+                                            <h3 className="text-2xl font-semibold ml-3">{service.title}</h3>
+                                        </div>
+                                        <p className="text-gray-600 mb-4">{service.description}</p>
+
+                                        {/* Stats */}
+                                        <div className="grid grid-cols-3 gap-4 mb-6">
+                                            {Object.entries(service.stats).map(([key, value]) => (
+                                                <div key={key} className="text-center">
+                                                    <div className="text-primary-600 font-bold">{value}</div>
+                                                    <div className="text-sm text-gray-500 capitalize">{key}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        {/* Features */}
+                                        <div className={`grid grid-cols-2 gap-3 transition-all duration-300 ${activeService === index ? 'opacity-100 max-h-40' : 'opacity-0 max-h-0'
+                                            }`}>
+                                            {service.features.map((feature, i) => (
+                                                <div key={i} className="flex items-center text-sm text-gray-600">
+                                                    <FaArrowRight className="w-3 h-3 text-primary-600 mr-2" />
+                                                    <span>{feature}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
             </div>
+        </section>
+    );
+};
 
-            <div className="p-3 gap-5 flex flex-col md:grid grid-cols-3">
-                <ServiceItem title={'Air Freight'} image={GlobalDelivery} description={'Sussex Logistics connects people in over 220 countries and territories worldwide. Driven by the power of more than 600,000 employees, we deliver integrated services and tailored solutions for managing and transporting letters, goods and information.'} />
-
-                <ServiceItem title={'Ocean Freight'} image={FreightForwarding} description={'Streamline your global supply chain with our reliable ocean freight services. We offer customized shipping solutions, ensuring safe and timely delivery of your cargo across the world’s busiest ports. Trust us to navigate complex logistics, so you can focus on growing your business.'} />
-
-                <ServiceItem title={'Road Freight'} image={RoadFreightImage} description={'Our road freight services provide fast, flexible, and efficient transportation for your goods across regional and national routes. With a dedicated fleet and expert drivers, we ensure timely deliveries, no matter the distance. Rely on us for secure and cost-effective ground logistics solutions tailored to your needs.'} />
-
-                <ServiceItem title={'Rail Freight'} image={RailFreightImage} description={'Optimize your supply chain with our efficient railway freight services. We provide cost-effective, eco-friendly transport solutions for large volumes, ensuring timely deliveries across key national and international routes. Rely on our expertise to keep your business on track.'} />
-
-                <ServiceItem title={'Document and Parcel'} image={ParcelsImage} description={'Sustainable business begins with sustainable supply chains. We proudly provide a comprehensive portfolio of emission reduced logistics solutions. Find out what we have to offer, why we’re committed to sustainability, and how our industry is helping deliver an even better world.'} />
-
-                <ServiceItem title={'Warehouse Solutions'} image={WarehouseImage} description={'The warehouse solution you choose needs to be scalable and flexible to keep your supply chain running smoothly and accommodate fluctuations in demand. We provide the optimal mix of dedicated and shared resources to improve inventory efficiency and accelerate your response to changing customer demands.'} />
-            </div>
-
-        </div >
-    )
-}
-
-function ServiceItem({ title, description, image }) {
-    return (
-        <div className="w-full rounded-lg bg-white min-h-[400px] shadow-lg flex flex-col">
-            <img src={image} alt="" className="w-full max-h-[60%]" />
-            <p className="text-3xl font-poppins text-center p-2">{title}</p>
-            <p className="text-sm font-poppins text-center p-2">{description}</p>
-        </div>
-    )
-}
-
-export default Services
+export default Services;
