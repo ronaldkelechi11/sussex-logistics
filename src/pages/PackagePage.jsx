@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Download, Loader2, Package as PackageIcon, MapPin, CheckCircle2, ArrowDown, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import { searchPackage } from "../api/database.api.js";
@@ -18,13 +18,13 @@ const Package = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [fetchedPackage, setFetchedPackage] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoading(true);
     searchPackage({ trackingId })
       .then(({ data }) => {
         setFetchedPackage(data);
-        console.log(data);
       })
       .catch((err) => {
         setError(true);
@@ -265,8 +265,8 @@ const Package = () => {
                 transition={{ delay: 0.4 }}
                 className="flex justify-center"
               >
-                <button className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
-                  <Download className="mr-2 h-5 w-5" /> Download Details
+                <button className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500" onClick={() => { navigate('/') }}>
+                  Done
                 </button>
               </motion.div>
             </div>
